@@ -1,0 +1,137 @@
+	.table-responsive{
+	  width: 100% !important;
+	}
+	table {
+		margin-top: 20px;
+		margin-bottom: 20px !important;
+	}
+
+	.formPedido {  
+     width: 100%;  
+   }  
+   .formPedido input {  
+     width: 90%;  
+     margin-left: 10px;  
+     margin-right: 10px;  
+   }  
+   .formPedido select{  
+     width: 90%;  
+     margin-left: 10px;  
+     margin-right: 10px;  
+   }  
+   .formPedido textarea {  
+     width: 90%;  
+     margin-left: 10px;  
+     margin-right: 10px;  
+   }  
+   .botaoContato {  
+     margin-left: 10px;  
+     margin-right: 10px;  
+     margin-top: 1px;  
+   }  
+   
+
+   /*Deixa centralizaado o formulário*/
+   .pgContato  {
+	  padding: 70px 0;
+	  background: #28549D;
+
+	}
+	
+	body {
+        margin: 0px
+    }
+	
+	form {
+	  margin: 0 auto;
+	  max-width: 850px;
+	  padding: 20px 10px;
+	  background-color:rgba(192,192,192,0.3);
+	}
+
+	
+	/*Coloca cor embaixo do Navbar*/
+    .container {
+        width: 100vw;
+        height: 100vh;
+        background: #fff;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center
+    }
+	/*Caixa branca do fómulário*/
+    .box {
+        width: 800px;
+        height: 600px;
+        background: #ffff;
+    }
+
+	label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+	}
+	
+	
+   .pgContato input {  
+     padding-left: 20px;  
+     color: #292929;  
+     font-size: 18px;  
+     background-color: #E9E9E9;  
+     border: 1px solid #E9E9E9;  
+     -moz-border-radius: 5px;  
+     -webkit-border-radius: 5px;  
+     border-radius: 5px;  
+     height: 40px;  
+     margin-bottom: 20px;  
+     border-bottom: 1px solid #ccc;  
+     border-left: 1px solid #ccc;  
+   }  
+   .pgContato textarea {  
+     padding-left: 20px;  
+     color: #292929;  
+     font-size: 18px;  
+     background-color: #E9E9E9;  
+     border: 1px solid #E9E9E9;  
+     -moz-border-radius: 5px;  
+     -webkit-border-radius: 5px;  
+     border-radius: 5px;  
+     height: 200px;  
+     margin-bottom: 20px;  
+     border-bottom: 1px solid #ccc;  
+     border-left: 1px solid #ccc; 
+	}
+	 
+	.pgContato select {  
+    padding-left: 20px;  
+     color: #292929;  
+     font-size: 18px;  
+     background-color: #E9E9E9;  
+     border: 1px solid #E9E9E9;  
+     -moz-border-radius: 5px;  
+     -webkit-border-radius: 5px;  
+     border-radius: 5px;  
+     height: 40px;  
+     margin-bottom: 20px;  
+     border-bottom: 1px solid #ccc;  
+     border-left: 1px solid #ccc;   
+   }  
+   .botaoContato {  
+     border-radius: 4px;  
+     color: #fff;  
+     padding: 2px 40px;  
+     height: 40px;  
+     margin-top: 18px;  
+     opacity: 0.9;  
+     margin-bottom: 20px;  
+     cursor: pointer;  
+     background: #B22222;  
+     display: inline-block;  
+     border: none;  
+     border-bottom: 1px solid #500707;  
+     border-right: 1px solid #500707;  
+   }  
+   .botaoContato:hover {  
+     opacity: 1.0;  
+     transition: 1s;  
+   }  
