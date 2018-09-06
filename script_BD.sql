@@ -10,9 +10,7 @@ create table perfil (
 );
 
 create table usuario(
-	cod_usuario int primary key not null auto_increment,
-    matricula int not null,
-    senha varchar(20) not null,
+	matricula int primary key not null,
     fk_Setor int, 
     fk_Perfil int,
     constraint fk_setor foreign key (fk_Setor) references setor (cod_setor),

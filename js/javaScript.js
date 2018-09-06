@@ -1,5 +1,5 @@
 
-		function myFunction() {
+		function cria_Botao_NavBar() {
 			var x = document.getElementById("myTopnav");
 			if (x.className === "topnav") {
 				x.className += " responsive";
