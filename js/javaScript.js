@@ -41,3 +41,15 @@
 			/* Removendo o DIV com id específico do nó-pai: */
 			var removido = objPai.removeChild(objFilho);
 		}
+		
+		<!-- Função para validar a matricula -->
+		function valida_Matricula()
+		{
+			alert("Matricula inválida!");
+			var matricula = documentformulario.matricula.value;
+			document.write(matricula);
+			if(matricula < 9)
+			{
+				alert("Matricula inválida!");
+			}
+		}
