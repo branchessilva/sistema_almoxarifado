@@ -21,34 +21,34 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
-<link rel="stylesheet"  href="./css/css_formato_Campos_cadastro.css" />
+<link rel="stylesheet"  href="./css_formato_Campos_cadastro.css" />
 
 <!-- JavaScript -->
-<script type="text/javascript" src="./js/javaScript.js"></script>
+<script type="text/javascript" src="javaScript_uneb.js" /></script>
 
 </head>
 <body>
 <div class="login-form"">
 	<h2 class="text-center">Cadastro</h2>
-    <form name="formulario" action="/examples/actions/confirmation.php" method="get">
+    <form name="formulario" action="insere_usuario.php" method="POST">
 		<div class="avatar">
 			<img src="Imagens/avatar.png" alt="Avatar">
 		</div>           
         <div class="form-group">
-        	<input type="text" class="form-control input-lg" id="nome" placeholder="Nome" required="required">
+        	<input type="text" name="nome" class="form-control input-lg" id="nome" placeholder="Nome" onblur="valida_Nome()" required="required">
         </div>
 		 <div class="form-group">
-        	<input type="text" class="form-control input-lg" id="matricula" onblur="valida_Matricula()" maxlength="9" placeholder="Matricula" required="required" onkeypress='return SomenteNumero(event)'>
+        	<input type="text" name="matricula" class="form-control input-lg" id="matricula" onblur="valida_Matricula()" maxlength="9" placeholder="Matricula" required="required" onkeypress='return SomenteNumero(event)'>
         </div>
 		<div class="form-group">
-            <select required>
+            <select id="opc_perfil" name="opc_perfil" required>
 			  <option placeholder="Nome" value="">Escolha o perfil do usu&aacute;rio</option>
 			  <?php 
 					while($dado = $connect_perfil->fetch_array()) { ?>
 						<option value=<?=$dado['cod_perfil']?>> <?=$dado['nome']?> </option>
 				<?php } ?>
 			</select><br>
-			<select required>
+			<select id="opc_setor" name="opc_setor" required>
 			  <option placeholder="Nome" value="">Escolha o setor do usu&aacute;rio</option>
 				<?php 
 					while($dado = $connect_setor->fetch_array()) { ?>
@@ -57,9 +57,9 @@
 			</select>
         </div>        
         <div class="form-group">
-            <button type="submit" id="BotaoSubmit" class="btn btn-primary btn-lg btn-block login-btn">Cadastrar</button>
+            <button type="submit" onclick="confirma()" id="BotaoSubmit" class="btn btn-primary btn-lg btn-block login-btn">Cadastrar</button>
         </div>
     </form>
 </div>
 </body>
-</html>                            
+</html>      

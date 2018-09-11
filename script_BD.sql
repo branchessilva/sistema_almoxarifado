@@ -11,6 +11,7 @@ create table perfil (
 
 create table usuario(
 	matricula int primary key not null,
+	nome varchar(45) not null,
     fk_Setor int, 
     fk_Perfil int,
     constraint fk_setor foreign key (fk_Setor) references setor (cod_setor),
@@ -45,3 +46,9 @@ create table pedido_Item(
     quantidade_Solicitada int not null,
     quantidade_Fornecida int not null
 );
+
+
+/*Insert para perfil*/
+insert into perfil (nome) values ('Autorizado');
+insert into perfil (nome) values ('Comum');
+insert into perfil (nome) values ('Almoxarifado');
