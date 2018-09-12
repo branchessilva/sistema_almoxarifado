@@ -68,5 +68,5 @@
 		}
 		
 		function confirma() {
-			confirm("Confirma?");
+			confirm("Confirma o cadastro?");
 		}
