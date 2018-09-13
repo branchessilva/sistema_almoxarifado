@@ -1,3 +1,12 @@
+<?php 
+	if(!isset($_SESSION["matricula"]))
+	{
+		header('HTTP/1.0 403 Forbidden');
+		header("location:login.php");
+		exit();
+	}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>

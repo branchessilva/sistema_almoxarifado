@@ -31,10 +31,10 @@
 
 		if($connect_usuario){ 
 			echo "<div class='alert alert-success' role='alert'>Registro INSERIDO com sucesso, AGUARDE VOCÊ ESTÁ SENDO REDIRECIONADO...</div> ";
-			echo "<meta http-equiv=refresh content='3;URL=cadastro_usuario.php'>";
+			echo "<meta http-equiv=refresh content='5;URL=cadastro_usuario.php'>";
 		} else {
 			echo "<div class='alert alert-danger' role='alert'>Registro NÃO INSERIDO, AGUARDE VOCÊ ESTÁ SENDO REDIRECIONADO ...</div> ";
-			echo "<meta http-equiv=refresh content='3;URL=cadastro_usuario.php'>";
+			echo "<meta http-equiv=refresh content='5;URL=login.php'>";
 		}
 
 	?> 
