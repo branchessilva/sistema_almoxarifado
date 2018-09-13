@@ -42,14 +42,14 @@
 			var removido = objPai.removeChild(objFilho);
 		}
 		
+		
+		
 		<!-- Função para validar a matricula -->
 		function valida_Matricula()
 		{
-			alert("Matricula inválida!");
-			var matricula = documentformulario.matricula.value;
-			document.write(matricula);
-			if(matricula < 9)
+			var matricula = document.formulario.matricula.value;
+			if(matricula < 8)
 			{
-				alert("Matricula inválida!");
+				document.getElementById('matricula').value='';
 			}
 		}
