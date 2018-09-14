@@ -28,7 +28,7 @@
 			<img src="./Imagens/avatar.png" alt="Avatar">
 		</div>           
 		 <div class="form-group">
-        	<input type="text" name="matricula" class="form-control input-lg" id="matricula" onblur="valida_Matricula()" maxlength="9" placeholder="Matricula" required="required" onkeypress='return SomenteNumero(event)'>
+        	<input type="text" name="matricula" class="form-control input-lg" id="matricula"  maxlength="20" placeholder="Usuario" required="required">
         </div>
 		<div class="form-group">
             <input type="password" class="form-control input-lg" name="password" maxlength="25" placeholder="Senha" required="required">

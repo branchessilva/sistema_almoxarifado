@@ -1,10 +1,13 @@
 <?php 
-	if(!isset($_SESSION["matricula"]))
-	{
-		header('HTTP/1.0 403 Forbidden');
-		header("location:login.php");
-		exit();
-	}
+	include "verifica.php";
+	require "verifica.php";
+	
+	include "connect_BD.php";
+	require "connect_BD.php";
+	
+	/*Pegar dados do setor no BD */
+	$consulta_setor = "SELECT S.nome, S.cod_setor FROM setor AS S INNER JOIN usuario AS U ON S.cod_setor=U.fk_Perfil WHERE U.matricula='$_SESSION[matricula]'";
+	$connect_setor = mysqli_query($mysqli, $consulta_setor ) or die(mysqli_error($mysqli));
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +33,7 @@
 	<div class="topnav" id="myTopnav">
 	  <a href="#home" class="active">Home</a>
 	  <a href="#news">Acompanhar pedidos</a>
-	  <a href="login.html">Sair</a>
+	  <a href="login.php">Sair</a>
 	  <a href="javascript:void(0);" class="icon" onclick="cria_Botao_NavBar();">
 		<i class="fa fa-bars"></i>
 	  </a>
@@ -39,22 +42,21 @@
 	<div class="container">
 		<div class="box">
 			<div class="pgContato"> 
-				<legend align="center"> <font size='5' color='#FFFFFF'> Solicitacao de Material </font> </legend>
+				<legend align="center"> <font size='5' color='#FFFFFF'> Solicita&ccedil;&atilde;o de Material </font> </legend>
 				<div class="divFormulario">  
 					<div class="formPedido">  
-						<form id="formPedido" action="" method="GET">
+						<form id="formPedido" action="insere_pedido.php" method="GET">
 							<p>
 								<font size="4" color="#FFFFFF">Unidade requisitante:</font>
 							</p>
-							<select id="country" name="country">
-								<option value="australia">DCET</option>
-								<option value="canada">COLEGIADO</option>
-								<option value="usa">...</option>
-							</select>
-							<p>
-								<font size="4" color="#FFFFFF">C&oacute;digo do setor:</font>
-							</p>
-							<input type="text" id="numero" name="numero" placeholder="N&uacute;mero..." onkeypress='return SomenteNumero(event)' disable />
+							<?php 
+									while($dado = $connect_setor->fetch_array()) { ?>
+									<input disabled type="text" name="nome" value="<?php echo $dado['nome'];?>"/>
+									<p>
+										<font size="4" color="#FFFFFF">C&oacute;digo do setor:</font>
+									</p>
+									<input disabled type="text" name="nome" value="<?php echo $dado['cod_setor'];?>"/>
+							<?php } ?>
 							<div id="campoPai"></div>
 							<input type="button" value="Adicionar item" onClick="addCampos();">
 							<br><br><input type="submit" value="Solicitar">

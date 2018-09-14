@@ -1,6 +1,50 @@
-<?php
-	session_start();
-?>
+	<?php
+		// Inicia sessões 
+		session_start();
+		//Conexão com o BD
+		include "connect_BD.php";
+		require "connect_BD.php";
+		
+		/*Constantes para saber o perfil*/
+		define("AUTORIZADO", 1);
+		define("COMUM", 2);
+		define("ALMOXARIFADO", 3);
+		
+		/*Parte do LDAP*/
+		$user = (int) $_POST["matricula"]; 
+		$pass = $_POST["password"];
+
+		$g_ldap_server = 'autenticacaoad.uneb.br';
+		//$g_ldap_server = 'ldap://autenticacaoad.uneb.br/';
+		$g_ldap_port = 389;
+		$ds= @ldap_connect($g_ldap_server)or die("Erro na conexao do LDAP!");
+		if (!($bind = @ldap_bind($ds, $_POST["matricula"]."@uneb.br", $_POST["password"]))) { /*Se exitir problemas com a autenticação do login*/
+		
+			echo "<div class='alert alert-danger' role='alert'>USUÁRIO OU SENHA INCORRETOS, você está sendo recirecionado!</div> ";
+			echo "<meta http-equiv=refresh content='3;URL=login.php'>";
+			
+		} else {
+			
+			/*Pesquisar o perfil do usuario para direcionar a sua página inicial*/
+			$consulta_perfil = "SELECT P.cod_perfil FROM perfil AS P INNER JOIN usuario AS U ON P.cod_perfil=U.fk_Perfil WHERE U.matricula='$user'";
+			$connect_perfil = mysqli_query($mysqli, $consulta_perfil) or die(mysqli_error($mysqli));
+			$dado = $connect_perfil->fetch_array();
+			
+			if($dado['cod_perfil'] == AUTORIZADO)
+			{
+			}else if($dado['cod_perfil'] == COMUM)
+			{
+				session_start();
+				$_SESSION["matricula"] = $_POST["matricula"];
+				echo $_SESSION["matricula"];
+				header('Location: fazer_Pedido.php');
+			}else if($dado['cod_perfil'] == ALMOXARIFADO)
+			{
+			}
+			
+		}
+		
+	?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -18,47 +62,4 @@
 	</head>
 </html> 
 <body> 
-	<?php
-		include "connect_BD.php";
-		require "connect_BD.php";
-		
-		/*Constantes para saber o perfil*/
-		define("AUTORIZADO", 1);
-		define("COMUM", 2);
-		define("ALMOXARIFADO", 3);
-		
-		/*Parte do LDAP*/
-		$user = (int) $_POST["matricula"]; 
-		$pass = $_POST["password"];
-		session_start();
-
-		$g_ldap_server = 'autenticacaoad.uneb.br';
-		//$g_ldap_server = 'ldap://autenticacaoad.uneb.br/';
-		$g_ldap_port = 389;
-		$ds= @ldap_connect($g_ldap_server)or die("Erro na conexao do LDAP!");
-		if (!($bind = @ldap_bind($ds, $_POST["matricula"]."@uneb.br", $_POST["password"]))) { /*Se exitir problemas com a autenticação do login*/
-		
-			echo "<div class='alert alert-danger' role='alert'>USUÁRIO OU SENHA INCORRETOS!</div> ";
-			echo "<meta http-equiv=refresh content='3;URL=login.php'>";
-			
-		} else {
-			
-			/*Pesquisar o perfil do usuario para direcionar a sua página inicial*/
-			$consulta_perfil = "SELECT P.cod_perfil FROM perfil AS P INNER JOIN usuario AS U ON P.cod_perfil=U.fk_Perfil WHERE U.matricula='$user'";
-			$connect_perfil = mysqli_query($mysqli, $consulta_perfil) or die(mysqli_error($mysqli));
-			$dado = $connect_perfil->fetch_array();
-			
-			if($dado['cod_perfil'] == AUTORIZADO)
-			{
-			}else if($dado['cod_perfil'] == COMUM)
-			{
-				$_SESSION["matricula"] = $user;
-				header('Location: fazer_Pedido.php');
-			}else if($dado['cod_perfil'] == ALMOXARIFADO)
-			{
-			}
-			
-		}
-		
-	?>
 </body>

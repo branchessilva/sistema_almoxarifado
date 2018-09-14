@@ -38,7 +38,7 @@
         	<input type="text" name="nome" class="form-control input-lg" id="nome" placeholder="Nome" onblur="valida_Nome()" required="required">
         </div>
 		 <div class="form-group">
-        	<input type="text" name="matricula" class="form-control input-lg" id="matricula" onblur="valida_Matricula()" maxlength="9" placeholder="Matricula" required="required" onkeypress='return SomenteNumero(event)'>
+        	<input type="text" name="matricula" class="form-control input-lg" id="matricula" onblur="valida_Matricula()" maxlength="9" placeholder="Matricula" required="required">
         </div>
 		<div class="form-group">
             <select id="opc_perfil" name="opc_perfil" required>
