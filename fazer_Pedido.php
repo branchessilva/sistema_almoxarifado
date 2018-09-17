@@ -45,20 +45,20 @@
 				<legend align="center"> <font size='5' color='#FFFFFF'> Solicita&ccedil;&atilde;o de Material </font> </legend>
 				<div class="divFormulario">  
 					<div class="formPedido">  
-						<form id="formPedido" action="insere_pedido.php" method="GET">
+						<form id="formPedido" action="insere_pedido.php" method="POST">
 							<p>
 								<font size="4" color="#FFFFFF">Unidade requisitante:</font>
 							</p>
 							<?php 
 									while($dado = $connect_setor->fetch_array()) { ?>
 									<input disabled type="text" name="nome" value="<?php echo $dado['nome'];?>"/>
-									<p>
-										<font size="4" color="#FFFFFF">C&oacute;digo do setor:</font>
-									</p>
 									<input disabled type="text" name="nome" value="<?php echo $dado['cod_setor'];?>"/>
 							<?php } ?>
+							</br> </br>
+							<div border="1">
+							</div>
 							<div id="campoPai"></div>
-							<input type="button" value="Adicionar item" onClick="addCampos();">
+							<input type="button" value="Adicionar campos" onclick="addCampos()">
 							<br><br><input type="submit" value="Solicitar">
 						<form>
 					</div>

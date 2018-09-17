@@ -17,20 +17,19 @@
 			}
 		}
 		
+		var qtdeCampos = 0;
 		<!--Função que esconde e mostra um campo-->
 		function addCampos() {
-			var qtdeCampos = 0;
-			/*https://forum.imasters.com.br/topic/325267-resolvido-adicionar-remover-campos-dinamicamente/ */
 			var objPai = document.getElementById("campoPai");
-			/*Criando o elemento DIV*/
+			//Criando o elemento DIV;
 			var objFilho = document.createElement("div");
 			//Definindo atributos ao objFilho:
 			objFilho.setAttribute("id","filho"+qtdeCampos);
 
-			/*Inserindo o elemento no pai:*/
+			//Inserindo o elemento no pai:
 			objPai.appendChild(objFilho);
-			/*Escrevendo algo no filho recém-criado: */
-			document.getElementById("filho"+qtdeCampos).innerHTML = "<fieldset><legend> <font size='4' color='#FFFFFF'> Material </font> </legend><label> <font size='4' color='#FFFFFF'>C&oacutedigo: </font> <input type='text' id='codigo"+qtdeCampos+"' name='campo[]' onkeypress='return SomenteNumero(event)'></label><br /><label> <label>  <font size='4' color='#FFFFFF'> Descri&ccedil;&atilde;o: </font> <input type='text' id='codigo"+qtdeCampos+"' name='campo[]'></label><br /><label> <font size='4' color='#FFFFFF'> Quantidade: </font> <input type='text' id='local"+qtdeCampos+"' name='campo[]' onkeypress='return SomenteNumero(event)'></label><br /> <label> <font size='4' color='#FFFFFF'> Unidade: </font>  <input type='text' id='codigo"+qtdeCampos+"' name='campo[]'></label><br/><input type='button' value='Remover item' onClick='removerCampo("+qtdeCampos+")'><label><label>";
+			//Escrevendo algo no filho recém-criado:
+			document.getElementById("filho"+qtdeCampos).innerHTML = "<input type='text' id='campo"+qtdeCampos+"' name='campo[]'> <input type='button' onClick='removerCampo("+qtdeCampos+")' value='Apagar campo'>";
 			qtdeCampos++;
 		}
 

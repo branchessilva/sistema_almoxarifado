@@ -20,8 +20,8 @@ create table usuario(
 
 create table pedido(
 	cod_pedido int primary key not null auto_increment,
-	recebedor varchar(45) not null,
-    autorizador varchar(45) not null,
+	recebedor varchar(45),
+    autorizador varchar(45),
     solicitante varchar(45) not null,
     data_Pedido date not null,
     fk_Usuario int,

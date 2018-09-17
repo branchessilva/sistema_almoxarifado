@@ -22,24 +22,15 @@
 </head>
 <body>
 	<?php
-		$nome = $_POST["nome"]; 
-		$matricula = $_POST["matricula"];
-		$cod_setor = (int)$_POST['opc_setor'];
-		$cod_perfil = (int)$_POST['opc_perfil'];
-		echo $cod_perfil;
-		echo $cod_setor;
-		
-		$insere_usuario= "INSERT INTO usuario (matricula, nome, fk_Setor, fk_Perfil) VALUES";
-		$insere_usuario .= "('$matricula', '$nome', '$cod_setor', '$cod_perfil')";
-		
-		$connect_usuario = mysqli_query($mysqli, $insere_usuario);
-
-		if($connect_usuario){ 
-			echo "<div class='alert alert-success' role='alert'>Registro INSERIDO com sucesso, AGUARDE VOCÊ ESTÁ SENDO REDIRECIONADO...</div> ";
-			echo "<meta http-equiv=refresh content='5;URL=cadastro_usuario.php'>";
-		} else {
-			echo "<div class='alert alert-danger' role='alert'>Registro NÃO INSERIDO, AGUARDE VOCÊ ESTÁ SENDO REDIRECIONADO ...</div> ";
-			echo "<meta http-equiv=refresh content='5;URL=login.php'>";
+		if(isset($_POST["campo"])) {
+			echo "Os campos que você adicionou são:<br><br>";
+			
+			// Faz loop pelo array dos campos:
+			foreach($_POST["campo"] as $campo) {
+				echo $campo."<br>";
+			}
+		}else{
+			echo "Você não adicionou dados em nenhum campo!";
 		}
 
 	?> 
