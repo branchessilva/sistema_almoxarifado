@@ -7,7 +7,7 @@
      margin-right: 10px;  
    }  
    .formPedido select{  
-     width: 90%;  
+     width: 30%;  
      margin-left: 10px;  
      margin-right: 10px;  
    }  
@@ -128,3 +128,17 @@
      opacity: 1.0;  
      transition: 1s;  
    }  
+   
+   #div_pedido
+	{
+		border: 3px solid;
+		border-color:#292929;
+		width:960px;
+		height:50px;
+		text-align: left;
+		padding-left: 1%;
+		padding-top: 1%;
+		background-color:#28549D;
+
+	}
+ 

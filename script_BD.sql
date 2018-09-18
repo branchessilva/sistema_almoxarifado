@@ -52,3 +52,6 @@ create table pedido_Item(
 insert into perfil (nome) values ('Autorizado');
 insert into perfil (nome) values ('Comum');
 insert into perfil (nome) values ('Almoxarifado');
+
+/*Insert para itens*/
+INSERT INTO itens (cod_Item, nome, quantidade_Estoque, unidade_Tipo) VALUES (1,"Café", 15, "PACOTE");

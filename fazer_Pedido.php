@@ -8,6 +8,8 @@
 	/*Pegar dados do setor no BD */
 	$consulta_setor = "SELECT S.nome, S.cod_setor FROM setor AS S INNER JOIN usuario AS U ON S.cod_setor=U.fk_Perfil WHERE U.matricula='$_SESSION[matricula]'";
 	$connect_setor = mysqli_query($mysqli, $consulta_setor ) or die(mysqli_error($mysqli));
+	$consulta_itens = "SELECT * FROM itens";
+	$connect_itens = mysqli_query($mysqli, $consulta_itens ) or die(mysqli_error($mysqli));
 ?>
 
 <!DOCTYPE html>
@@ -22,11 +24,39 @@
 <link rel="stylesheet"  type="text/css"  href="./divResponsiva.css" />
 <link rel="stylesheet"  type="text/css"  href="./formularioResponsivo.css" />
 <link rel="stylesheet"  type="text/css"  href="./css_NavBar.css" />
-
+ 
 <!-- JavaScript -->
 <script type="text/javascript" src="javaScript_uneb.js" /></script>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Usando jquery para os campos dinamicos de add itens-->
+<script src="jquery-1.11.3.js" type="text/javascript"></script> 
+
+<script type="text/javascript">  
+$(document).ready(function() 
+{
+        var campos_max          = 10;   //max de 10 campos
+        var x = 1; // campos iniciais
+        $('#add_item').click (function(e) {
+                e.preventDefault();     //prevenir novos clicks
+                if (x < campos_max) 
+				{
+                    $('#lista_itens').append('<div>\
+                        <input type="text" name="campo[]" v>\
+                        <a href="#" class="remover_campo">Remover</a>\
+                        </div>');
+                    x++;
+                }
+        });
+ 
+        // Remover o div anterior
+        $('#lista_itens').on("click",".remover_campo",function(e) {
+                e.preventDefault();
+                $(this).parent('div').remove();
+                x--;
+        });
+});
+</script>
 </head>
 <body>
 
@@ -55,11 +85,34 @@
 									<input disabled type="text" name="nome" value="<?php echo $dado['cod_setor'];?>"/>
 							<?php } ?>
 							</br> </br>
-							<div border="1">
+							<input type="button" id="add_item" value="Adicionar Item">
+							<br>
+							<p>
+								<font size="4" color="#FFFFFF">Itens do pedido:</font>
+							</p>
+							<?php for($cont = 0; $cont <= 9; $cont++)
+							{?>
+								<div id="div_pedido">
+									<font size="4" color="#FFFFFF">Material:</font>
+									<select name="select" style="width:180px">
+										<option value="">Itens</option> 
+										<?php 
+										while($dado2 = $connect_itens->fetch_array()) { ?>
+											<option value="<?=$dados2['cod_item']?>"><?=$dado2['nome']?>&nbsp;-&nbsp;<?=$dado2['unidade_Tipo']?></option>
+										<?php } ?>
+										</select>
+									<select name="select" style="width:150px">
+										<option value="">Quantidade</option> 
+										<?php for($i=1; $i<=50; $i++)
+										{?>
+											<option value="<?=$i?>"><?=$i?></option>
+										<?php }?>
+									</select>
+								</div>
+							<?php }?>
+							<div id="lista_itens">
+								<div><input type="text" name="campo[]">OI</div>
 							</div>
-							<div id="campoPai"></div>
-							<input type="button" value="Adicionar campos" onclick="addCampos()">
-							<br><br><input type="submit" value="Solicitar">
 						<form>
 					</div>
 				</div>
