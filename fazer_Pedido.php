@@ -10,6 +10,7 @@
 	$connect_setor = mysqli_query($mysqli, $consulta_setor ) or die(mysqli_error($mysqli));
 	$consulta_itens = "SELECT * FROM itens";
 	$connect_itens = mysqli_query($mysqli, $consulta_itens ) or die(mysqli_error($mysqli));
+
 ?>
 
 <!DOCTYPE html>
@@ -17,8 +18,9 @@
 <head>
 <title>SISTEMA ALMOXARIFADO - FAZER PEDIDO</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+<link rel="stylesheet" src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <!--Para deixar a div responsiva-->
 <!-- O ERRO PODE ACONTECER AQUI DEPOIS POR CONTA DON ENDEREÇO DO LINK -->
 <link rel="stylesheet"  type="text/css"  href="./divResponsiva.css" />
@@ -31,32 +33,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- Usando jquery para os campos dinamicos de add itens-->
 <script src="jquery-1.11.3.js" type="text/javascript"></script> 
-
-<script type="text/javascript">  
-$(document).ready(function() 
-{
-        var campos_max          = 10;   //max de 10 campos
-        var x = 1; // campos iniciais
-        $('#add_item').click (function(e) {
-                e.preventDefault();     //prevenir novos clicks
-                if (x < campos_max) 
-				{
-                    $('#lista_itens').append('<div>\
-                        <input type="text" name="campo[]" v>\
-                        <a href="#" class="remover_campo">Remover</a>\
-                        </div>');
-                    x++;
-                }
-        });
- 
-        // Remover o div anterior
-        $('#lista_itens').on("click",".remover_campo",function(e) {
-                e.preventDefault();
-                $(this).parent('div').remove();
-                x--;
-        });
-});
-</script>
 </head>
 <body>
 
@@ -85,14 +61,13 @@ $(document).ready(function()
 									<input disabled type="text" name="nome" value="<?php echo $dado['cod_setor'];?>"/>
 							<?php } ?>
 							</br> </br>
-							<input type="button" id="add_item" value="Adicionar Item">
+							<input type="button" id="add_item" onclick="carregarItens()" value="Adicionar Item">
+							<h2></h2>
 							<br>
 							<p>
 								<font size="4" color="#FFFFFF">Itens do pedido:</font>
 							</p>
-							<?php for($cont = 0; $cont <= 9; $cont++)
-							{?>
-								<div id="div_pedido">
+							<div id="div_pedido">
 									<font size="4" color="#FFFFFF">Material:</font>
 									<select name="select" style="width:180px">
 										<option value="">Itens</option> 
@@ -108,8 +83,7 @@ $(document).ready(function()
 											<option value="<?=$i?>"><?=$i?></option>
 										<?php }?>
 									</select>
-								</div>
-							<?php }?>
+							</div>
 							<div id="lista_itens">
 								<div><input type="text" name="campo[]">OI</div>
 							</div>

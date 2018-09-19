@@ -69,3 +69,78 @@
 		function confirma() {
 			confirm("Confirma o cadastro?");
 		}
+		
+		function addItem()
+		{
+			var campos_max          = 10;   //max de 10 campos
+			var x = 1; // campos iniciais
+				if (x < campos_max) 
+				{
+					$('#lista_itens').append('<div>\
+					<input type="text" name="campo[]" v>\
+					<a href="#" class="remover_campo">Remover</a>\
+					</div>');
+					x++;
+				}
+			 
+			// Remover o div anterior
+			$('#lista_itens').on("click",".remover_campo",function(e) {
+				e.preventDefault();
+				$(this).parent('div').remove();
+				x--;
+			});
+		}
+		
+		function carregarItens(){
+			//variáveis
+			var itens = "";
+			//Capturar Dados Usando Método AJAX do jQuery
+			$.ajax({
+				type: 'POST',
+                dataType: 'json',
+                url: 'carregaBD.php',
+                async: true,
+				beforeSend: function() {
+					$("h2").html("Carregando..."); //Carregando
+				},
+				error: function (jqXHR, exception) {
+					var msg = '';
+					if (jqXHR.status === 0) {
+						msg = 'Not connect.\n Verify Network.';
+					} else if (jqXHR.status == 404) {
+						msg = 'Requested page not found. [404]';
+					} else if (jqXHR.status == 500) {
+						msg = 'Internal Server Error [500].';
+					} else if (exception === 'parsererror') {
+						msg = 'Requested JSON parse failed.';
+					} else if (exception === 'timeout') {
+						msg = 'Time out error.';
+					} else if (exception === 'abort') {
+						msg = 'Ajax request aborted.';
+					} else {
+						msg = 'Uncaught Error.\n' + jqXHR.responseText;
+					}
+					console.log(msg);
+				},
+                success: function (retorno){	
+					var s = "bubu3";
+					console.log(s);
+					if(retorno[0].erro)
+					{
+						$("h2").html(retorno[0].erro);
+					}else{
+						itens +="<select name='select' style='width:180px'>";
+						//Laço para criar linhas da tabela
+						for(var i = 0; i<retorno.length; i++)
+						{
+							itens += "<option>"+retorno[i].nome+"</option>"; 
+						}
+						itens +="</select>";
+						
+						$("#lista_itens").html(itens);
+						//Limpar Status de Carregando
+						$("h2").html("Carregado");
+					}
+				}
+			});
+		}
