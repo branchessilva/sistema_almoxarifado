@@ -1,33 +1,28 @@
-<!doctype html>
-<html>
-<head>
-    <title>Campos dinâmicos</title>
-    <meta charset="utf-8"/>
-    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script>
-    $(function(){
-        $("#selectServicos").change(function(){
-            var valor = $(this).val();
-            var texto = $("#selectServicos>option:selected").html();
-            var nome = "input"+texto;
-            $("#divCampos").append("<div>");
-            $("#divCampos").append("<label for='"+nome+"'>"+texto+"</label>");
-            $("#divCampos").append("<input id='"+nome+"' type='text'/>");
-            $("#divCampos").append("</div>");
-        });
-    });
-    </script>
-</head>
-<body>
-    <form id="form1">
-        <select id="selectServicos">
-            <option value="Maq1">Maq 1</option>
-            <option value="Maq2">Maq 2</option>
-            <option value="Maq3">Maq 3</option>
-        </select>
-        <div id="divCampos">
-        </div>
-        <input type="submit"/>
-    </form>
-</body>
+<html>  
+<head>  
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.5.1.min.js"></script>  
+<script type="text/javascript">  
+$(document).ready(function(){  
+ 
+    var input = '<label style="display: block">Nome: <input type="text" name="foto[]" /> <a href="#" class="remove">X</a></label>';  
+    $("input[name='add']").click(function( e ){  
+        $('#inputs_adicionais').append( input );  
+    });  
+ 
+    $('#inputs_adicionais').delegate('a','click',function( e ){  
+        e.preventDefault();  
+        $( this ).parent('label').remove();  
+    });  
+ 
+});  
+</script>  
+</head>  
+<body>  
+    <form action="" method="post">  
+        <label style="display: block"><input type="button" name="add" value="Add" /></label>  
+            <label style="display: block">Nome: <input type="text" name="foto[]"></label>  
+        <fieldset id="inputs_adicionais" style="border: none">  
+        </fieldset>  
+    </form>  
+</body>  
 </html>

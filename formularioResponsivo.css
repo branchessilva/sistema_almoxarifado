@@ -1,5 +1,5 @@
-	.formPedido {  
-     width: 100%;  
+   .formPedido {  
+		width: 100%;
    }  
    .formPedido input {  
      width: 40%;  
@@ -21,47 +21,55 @@
      margin-right: 10px;  
      margin-top: 1px;  
    }  
-   
-
    /*Deixa centralizaado o formulário*/
    .pgContato  {
 	  padding: 70px 0;
 	  background: #28549D;
-
+	}
+	
+	.divFormulario {
+	  display: flex;
+	  overflow:auto;
+	  		border: 3px solid;
+		border-color:#ffffff;
 	}
 	
 	body {
-        margin: 0px
+      margin: 0px;
     }
 	
 	form {
 	  margin: 0 auto;
 	  max-width: 1000px;
 	  padding: 20px 10px;
-	  background-color:rgba(192,192,192,0.3);
 	}
 
 	
 	/*Coloca cor embaixo do Navbar*/
     .container {
-        width: 100vw;
-        height: 100vh;
-        background: #fff;
+        width: 100%;
+        background: #ffff;
         display: flex;
         flex-direction: row;
         justify-content: center;
-        align-items: center
+        align-items: center;
+		overflow: scroll;
+		z-index: -1;
+		position: absolute;
+		
     }
+	
 	/*Caixa branca do fómulário*/
-    .box {
-        width: 1000px;
-        height: 700px;
-        background: #ffff;
+    .box {/*AJUSTE AQUI PARA RESPONSIVIDADE*/
+		width: 100%;
+        background: #28549D;
+		overflow:auto;
+		display: inline-block;
     }
 
 	label {
-    padding: 12px 12px 12px 0;
-    display: inline-block;
+		padding: 12px 12px 12px 0;
+		display: inline-block;
 	}
 	
 	
@@ -80,6 +88,7 @@
      border-bottom: 1px solid #ccc;  
      border-left: 1px solid #ccc;  
    }  
+   
    .pgContato textarea {  
      padding-left: 20px;  
      color: #292929;  
@@ -108,7 +117,8 @@
      margin-bottom: 20px;  
      border-bottom: 1px solid #ccc;  
      border-left: 1px solid #ccc;   
-   }  
+   } 
+   
    .botaoContato {  
      border-radius: 4px;  
      color: #fff;  
@@ -124,6 +134,7 @@
      border-bottom: 1px solid #500707;  
      border-right: 1px solid #500707;  
    }  
+   
    .botaoContato:hover {  
      opacity: 1.0;  
      transition: 1s;  
@@ -131,14 +142,18 @@
    
    #div_pedido
 	{
-		border: 3px solid;
-		border-color:#292929;
-		width:960px;
-		height:50px;
 		text-align: left;
 		padding-left: 1%;
 		padding-top: 1%;
-		background-color:#28549D;
+		width: 90%;
+		background-color:#FFFFF;
+		display: inline-block;
 
+	}
+	
+	#inicio_div
+	{
+		width: auto;
+		text-align: center;
 	}
  

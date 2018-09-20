@@ -91,6 +91,7 @@
 			});
 		}
 		
+		/*função que pega os dados do BD e exibe no campo dinâmico*/
 		function carregarItens(){
 			//variáveis
 			var itens = "";
@@ -123,21 +124,19 @@
 					console.log(msg);
 				},
                 success: function (retorno){	
-					var s = "bubu3";
-					console.log(s);
 					if(retorno[0].erro)
 					{
 						$("h2").html(retorno[0].erro);
 					}else{
-						itens +="<select name='select' style='width:180px'>";
+						itens +="<div id='div_pedido'>\<font size='4' color='#FFFFFF'>Material:</font>\<select name='itens' style='width:180px'>\<option value=''>Itens</option>";
 						//Laço para criar linhas da tabela
 						for(var i = 0; i<retorno.length; i++)
 						{
-							itens += "<option>"+retorno[i].nome+"</option>"; 
+							itens += "<option>"+retorno[i].nome+"-"+retorno[i].unidade_Tipo+"</option>";
 						}
 						itens +="</select>";
-						
-						$("#lista_itens").html(itens);
+						itens +="<input type='text' style='width:180px' placeholder='Quantidade' name='campo[]'>\</div>";
+						$('#lista_itens').append(itens);
 						//Limpar Status de Carregando
 						$("h2").html("Carregado");
 					}
