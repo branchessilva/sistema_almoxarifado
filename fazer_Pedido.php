@@ -35,15 +35,6 @@
 <!-- Usando jquery para os campos dinamicos de add itens-->
 <script src="jquery-1.11.3.js" type="text/javascript"></script> 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-<script type="text/javascript">
-jQuery(window).scroll(function () {
- if (jQuery(this).scrollTop() > 443) {
-     jQuery(".myTopnav").addClass("fixo");
- } else {
-     jQuery(".myTopnav").removeClass("fixo");
- }
-});
-</script>
 </head>
 <body>
 
@@ -82,17 +73,20 @@ jQuery(window).scroll(function () {
 							</p>
 							<div id="div_pedido">
 									&nbsp;<font size="4" color="#FFFFFF">Material:</font>
-									<select name="itens" style="width:auto">
+									<select name="itens[]" style="width:auto">
 										<option value="">Itens</option> 
 										<?php 
 										while($dado2 = $connect_itens->fetch_array()) { ?>
-											<option value="<?=$dados2['cod_item']?>"><?=$dado2['nome']?>&nbsp;-&nbsp;<?=$dado2['unidade_Tipo']?></option>
+											<option value="<?=$dado2['cod_item']?>"><?=$dado2['nome']?>&nbsp;-&nbsp;<?=$dado2['unidade_Tipo']?></option>
 										<?php } ?>
 									</select>
-									<input type='text' style='width:auto' placeholder='Quantidade' name='campo[]' onkeypress="return SomenteNumero()">
+									<input type="text" style="width:auto" placeholder="Quantidade" name="quantidade[]" onkeypress="return SomenteNumero()">
 							</div >
 							<div id="lista_itens">
 								
+							</div>
+							<div class="form-group">
+								<button type="submit" onclick="confirma()" id="BotaoSubmit" class="btn btn-primary btn-lg btn-block login-btn">Cadastrar</button>
 							</div>
 						<form>
 					</div>

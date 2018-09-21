@@ -1,4 +1,9 @@
 
+create table estado(
+	cod_estado int primary key not null auto_increment,
+	nome varchar(10) not null
+	);
+	
 create table setor(
 	cod_setor int primary key not null auto_increment,
     nome varchar(45) not null
@@ -20,14 +25,12 @@ create table usuario(
 
 create table pedido(
 	cod_pedido int primary key not null auto_increment,
-	recebedor varchar(45),
-    autorizador varchar(45),
-    solicitante varchar(45) not null,
+	recebedor int,
+    autorizador int,
+    solicitante int not null,
     data_Pedido date not null,
-    fk_Usuario int,
-    fk_Estado int,
-    constraint fk_estado foreign key (fk_Estado) references estado (cod_estado),
-    constraint fk_usuario foreign key (fk_Usuario) references usuario (cod_usuario)
+    fk_Estado int not null,
+    constraint fk_estado foreign key (fk_Estado) references estado (cod_estado)
 );
 
 create table itens(
@@ -55,3 +58,8 @@ insert into perfil (nome) values ('Almoxarifado');
 
 /*Insert para itens*/
 INSERT INTO itens (cod_Item, nome, quantidade_Estoque, unidade_Tipo) VALUES (1,"Café", 15, "PACOTE");
+
+/*Insert para estado*/
+Insert into estado (nome) values ('Aprovado');
+Insert into estado (nome) values ('Pendente');
+Insert into estado (nome) values ('Cancelado');

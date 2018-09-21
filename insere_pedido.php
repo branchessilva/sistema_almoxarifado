@@ -22,12 +22,34 @@
 </head>
 <body>
 	<?php
-		if(isset($_POST["campo"])) {
+		$matricula = $_SESSION["matricula"];
+		/*$pesquisa_solicitante = "SELECT nome FROM usuario WHERE matricula = $matricula";
+		$result = mysqli_query($mysqli,$pesquisa_solicitante) or die("Erro ao buscar registro");
+		while($pesquisa = mysqli_fetch_object($result))
+		{
+			$solucitante = $pesquisa->nome;
+		}*/
+		$data = date("d/m/Y");
+		$dataAtual = str_replace("/", "-", $data);
+		$pegaData = date('Y-m-d', strtotime($dataAtual));
+		echo $pegaData;
+		//Exploda a data para entrar no formato aceito pelo DB.
+		//$dataAt = explode('/', $data);
+		//$dataNoFormatoParaOBranco = $dataAt[2].'-'.$dataAt[1].'-'.$dataAt[0];
+		
+		$insere_pedido = "INSERT INTO pedido(solicitante, data_Pedido, fk_Estado) VALUES ($matricula, $pegaData, 2)";
+		mysqli_query($mysqli,$insere_pedido) or die("Erro ao tentar cadastrar registro");
+		
+		if(isset($_POST["itens"])) {
 			echo "Os campos que você adicionou são:<br><br>";
-			
+			echo $_SESSION["matricula"];
 			// Faz loop pelo array dos campos:
-			foreach($_POST["campo"] as $campo) {
+			foreach($_POST["quantidade"] as $campo) {
 				echo $campo."<br>";
+			}
+			foreach($_POST["itens"] as $item)
+			{
+				echo $item."<br>";
 			}
 		}else{
 			echo "Você não adicionou dados em nenhum campo!";

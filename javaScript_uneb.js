@@ -67,7 +67,15 @@
 		}
 		
 		function confirma() {
-			confirm("Confirma o cadastro?");
+			if(confirm("Confirma o cadastro?"))
+			{
+				document.formPedido.submit() 
+			}
+			else
+			{
+				document.formPedido.e.preventDefault();
+			}
+			
 		}
 		
 		function addItem()
@@ -101,9 +109,6 @@
                 dataType: 'json',
                 url: 'carregaBD.php',
                 async: true,
-				beforeSend: function() {
-					$("h2").html("Carregando..."); //Carregando
-				},
 				error: function (jqXHR, exception) {
 					var msg = '';
 					if (jqXHR.status === 0) {
@@ -128,17 +133,15 @@
 					{
 						$("h2").html(retorno[0].erro);
 					}else{
-						itens +="<div id='div_pedido'>\<font size='4' color='#FFFFFF'>Material:</font>\<select name='itens' style='width:180px'>\<option value=''>Itens</option>";
+						itens +="<div id='div_pedido'>\<font size='4' color='#FFFFFF'>Material:</font>\<select name='itens[]' style='width:180px'>\<option value=''>Itens</option>";
 						//Laço para criar linhas da tabela
 						for(var i = 0; i<retorno.length; i++)
 						{
-							itens += "<option>"+retorno[i].nome+"-"+retorno[i].unidade_Tipo+"</option>";
+							itens += "<option value="+retorno[i].cod_item+">"+retorno[i].nome+"-"+retorno[i].unidade_Tipo+"</option>";
 						}
 						itens +="</select>";
-						itens +="<input type='text' style='width:180px' placeholder='Quantidade' name='campo[]'>\</div>";
+						itens +="<input name='quantidade[]' type='text' style='width:180px' placeholder='Quantidade' onkeypress='return SomenteNumero()'>\</div>";
 						$('#lista_itens').append(itens);
-						//Limpar Status de Carregando
-						$("h2").html("Carregado");
 					}
 				}
 			});
