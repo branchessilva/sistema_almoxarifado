@@ -1,7 +1,6 @@
 
 
 <?php 
-    /* substitua as variáveis abaixo pelas que se adequam ao seu caso */
 	$dbhost = 'localhost'; // endereco do servidor de banco de dados
 	$dbuser = 'root'; // login do banco de dados
 	$dbpass = 'admin'; // senha

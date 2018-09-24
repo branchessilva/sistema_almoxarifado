@@ -47,7 +47,7 @@ create table pedido_Item(
     constraint fk_item foreign key (fk_Item) references itens (cod_item),
 	constraint  cod_Pedido_Item primary key (fk_Pedido, fk_Item),
     quantidade_Solicitada int not null,
-    quantidade_Fornecida int not null
+    quantidade_Fornecida int 
 );
 
 

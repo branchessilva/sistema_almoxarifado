@@ -73,20 +73,20 @@
 							</p>
 							<div id="div_pedido">
 									&nbsp;<font size="4" color="#FFFFFF">Material:</font>
-									<select name="itens[]" style="width:auto">
+									<select name="itens[]" required style="width:auto">
 										<option value="">Itens</option> 
 										<?php 
 										while($dado2 = $connect_itens->fetch_array()) { ?>
 											<option value="<?=$dado2['cod_item']?>"><?=$dado2['nome']?>&nbsp;-&nbsp;<?=$dado2['unidade_Tipo']?></option>
 										<?php } ?>
 									</select>
-									<input type="text" style="width:auto" placeholder="Quantidade" name="quantidade[]" onkeypress="return SomenteNumero()">
+									<input type="text" style="width:auto" required="required" placeholder="Quantidade" name="quantidade[]" onkeypress="return SomenteNumero()">
 							</div >
 							<div id="lista_itens">
 								
 							</div>
 							<div class="form-group">
-								<button type="submit" onclick="confirma()" id="BotaoSubmit" class="btn btn-primary btn-lg btn-block login-btn">Cadastrar</button>
+								<button type="submit"  id="BotaoSubmit" class="btn btn-primary btn-lg btn-block login-btn">Cadastrar</button>
 							</div>
 						<form>
 					</div>

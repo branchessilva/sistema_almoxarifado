@@ -2,8 +2,8 @@
 	include "verifica.php";
 	require "verifica.php";
 	
-	include "connect_BD.php";
-	require "connect_BD.php";
+	include "connect_Fazer_Pedido.php";
+	require "connect_Fazer_Pedido.php";
 ?>	
 
 <!DOCTYPE html>
@@ -23,37 +23,43 @@
 <body>
 	<?php
 		$matricula = $_SESSION["matricula"];
-		/*$pesquisa_solicitante = "SELECT nome FROM usuario WHERE matricula = $matricula";
-		$result = mysqli_query($mysqli,$pesquisa_solicitante) or die("Erro ao buscar registro");
-		while($pesquisa = mysqli_fetch_object($result))
-		{
-			$solucitante = $pesquisa->nome;
-		}*/
+		
+		date_default_timezone_set('America/Sao_Paulo');
+		//Pegue a data no formato dd/mm/yyyy
 		$data = date("d/m/Y");
-		$dataAtual = str_replace("/", "-", $data);
-		$pegaData = date('Y-m-d', strtotime($dataAtual));
-		echo $pegaData;
+		//Pega a hora
+		$hora = date('H:i:s');
+
 		//Exploda a data para entrar no formato aceito pelo DB.
-		//$dataAt = explode('/', $data);
-		//$dataNoFormatoParaOBranco = $dataAt[2].'-'.$dataAt[1].'-'.$dataAt[0];
+		$dataAtual = explode('/', $data);
+		$dataFormatada = $dataAtual[2].'/'.$dataAtual[1].'/'.$dataAtual[0];
+		$insere_pedido = "INSERT INTO pedido(solicitante, data_Pedido, fk_Estado, hora) VALUES ($matricula,'$dataFormatada', 2, '$hora')";
+		$result = mysql_query($insere_pedido,$con);
+		$id_Pedido = mysql_insert_id();
 		
-		$insere_pedido = "INSERT INTO pedido(solicitante, data_Pedido, fk_Estado) VALUES ($matricula, $pegaData, 2)";
-		mysqli_query($mysqli,$insere_pedido) or die("Erro ao tentar cadastrar registro");
-		
-		if(isset($_POST["itens"])) {
-			echo "Os campos que você adicionou são:<br><br>";
-			echo $_SESSION["matricula"];
-			// Faz loop pelo array dos campos:
-			foreach($_POST["quantidade"] as $campo) {
-				echo $campo."<br>";
+		if(isset($_POST["itens"]) && isset($_POST["quantidade"])) {
+			$i= 0;
+			$j= 0;
+			foreach($_POST["quantidade"] as $quant) {
+				$quantidade[$i] = $quant;
+				$i++;
 			}
 			foreach($_POST["itens"] as $item)
 			{
-				echo $item."<br>";
+				$produto[$j] = $item;
+				$j++;
 			}
-		}else{
-			echo "Você não adicionou dados em nenhum campo!";
+			for( $x=0; $x < $i; $x++)
+			{
+				//O @ esconde os warnings
+				@$insere_item_pedido = "INSERT INTO pedido_Item (f_Pedido, fk_Item, quantidade_Solicitada) VALUES ($id_Pedido,'$produto[$x]','$quantidade[$x]')";
+				@$result = mysql_query($insere_item_pedido,$con);
+				if(!$result)
+				{
+					echo "<div class='alert alert-danger' role='alert'>Erro ao realizar pedido, você está sendo recirecionado!</div> ";
+					echo "<meta http-equiv=refresh content='3;URL=login.php'>";
+				}
+			}
 		}
-
 	?> 
 </body>	
