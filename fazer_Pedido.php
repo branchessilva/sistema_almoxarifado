@@ -40,7 +40,7 @@
 
 	<div class="topnav " id="myTopnav">
 	  <a href="#home" class="active">Home</a>
-	  <a href="#news">Acompanhar pedidos</a>
+	  <a href="acompanhar_Pedido.php">Acompanhar pedidos</a>
 	  <a href="login.php">Sair</a>
 	  <a href="javascript:void(0);" class="icon" onclick="cria_Botao_NavBar();">
 		<i class="fa fa-bars"></i>

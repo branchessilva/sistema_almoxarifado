@@ -30,6 +30,7 @@ create table pedido(
     solicitante int not null,
     data_Pedido date not null,
     fk_Estado int not null,
+	hora time not null,
     constraint fk_estado foreign key (fk_Estado) references estado (cod_estado)
 );
 

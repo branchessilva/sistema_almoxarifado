@@ -72,6 +72,12 @@
 			
 		}
 		
+		function pegaPedido() {
+			var linha = document.getElementById("codigo_pedido");
+			console.log(linha);
+			
+		}
+		
 		function addItem()
 		{
 			var campos_max          = 10;   //max de 10 campos

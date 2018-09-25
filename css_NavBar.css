@@ -60,7 +60,6 @@
 			border-collapse: collapse;
 			border-spacing: 0;
 			width: 110%;
-			border: 3px solid #28549D;
 			margin: auto;
 		}
 
@@ -70,7 +69,6 @@
 		}
 
 		tr:nth-child(even){
-		background-color: #6495ED;
 		text-color: #fff;
 		}
 		

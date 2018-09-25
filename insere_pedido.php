@@ -54,7 +54,7 @@
 				//O @ esconde os warnings
 				@$insere_item_pedido = "INSERT INTO pedido_Item (f_Pedido, fk_Item, quantidade_Solicitada) VALUES ($id_Pedido,'$produto[$x]','$quantidade[$x]')";
 				@$result = mysql_query($insere_item_pedido,$con);
-				if(!$result)
+				if($result)
 				{
 					echo "<div class='alert alert-danger' role='alert'>Erro ao realizar pedido, você está sendo recirecionado!</div> ";
 					echo "<meta http-equiv=refresh content='3;URL=login.php'>";
