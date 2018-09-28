@@ -10,6 +10,11 @@
      width: 30%;  
      margin-left: 10px;  
      margin-right: 10px;  
+   } 
+.formPedido button{  
+     width: 30%;  
+     margin-left: 10px;  
+     margin-right: 10px;  
    }  
    .formPedido textarea {  
      width: 90%;  
@@ -23,10 +28,9 @@
    }  
    /*Deixa centralizaado o formulário*/
    .pgContato  {
-	  padding: 70px 0;
+	  padding: 100px 0;
 	  background: #28549D;
-	  width: 100%;
-
+	  /*width: 1000%;*/
 	}
 	
 	.divFormulario {
@@ -38,27 +42,31 @@
 	
 	body {
       margin: 0px;
-	          align-items: center;
+      align-items: center;
     }
 	
 	form {
 	  margin: 10%; /*Para aumentar o tamanho do formulário*/
-	  max-width: 1000px;
+	  /*max-width: 1000px;*/
 	  padding: 20px 10px;
 	}
 
 	
 	/*Coloca cor embaixo do Navbar*/
     .container {
-        width: 100%;
+      margin: auto;
+      width: 80%;
+      padding: 100px;
+        
+        /*width: 100%;
         background: #ffff;
         display: flex;
         flex-direction: row;
         justify-content: center;
         align-items: center;
 		/*overflow: scroll;*/
-		z-index: -1;
-		position: absolute;
+		/*z-index: -1;
+		position: absolute;*/
 		
     }
 	
@@ -68,6 +76,9 @@
         background: #28549D;
 		overflow:auto;
 		display: inline-block;
+        justify-content: center;
+        align-items: center;
+            
     }
 
 	label {
@@ -151,17 +162,12 @@
 		width: 90%;
 		background-color:#FFFFF;
 		display: inline-block;
-		       flex-direction: row;
+        flex-direction: row;
         justify-content: center;
         align-items: center
 
 	}
 	
-	#inicio_div
-	{
-		width: auto;
-		text-align: center;
-	}
 	
 	.BotaoSubmit
 	{

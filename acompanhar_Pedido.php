@@ -6,7 +6,7 @@
 	require "connect_BD.php";
 	
 	$matricula = $_SESSION["matricula"];
-	$contulta_pedido = "SELECT P.cod_pedido, P.data_Pedido, E.nome FROM pedido as P INNER JOIN estado as E ON (P.solicitante = $matricula AND P.fk_Estado = E.cod_Estado)";
+	$contulta_pedido = "SELECT P.cod_pedido, P.data_Pedido, P.hora, E.nome FROM pedido as P INNER JOIN estado as E ON (P.solicitante = $matricula AND P.fk_Estado = E.cod_Estado)";
 	$connect_pedido = mysqli_query($mysqli, $contulta_pedido ) or die(mysqli_error($mysqli));
 ?>
 <!DOCTYPE html>
@@ -53,12 +53,13 @@
 					<div class="divFormulario">  
 						<div class="formPedido">  
 							<div class="table-responsive">
-							  <table class="table table-bordered">
+							  <table class="table table-bordered" align="center">
 								  <thead>
 									<tr>
-									  <th scope="col">Numero</th>
-									  <th scope="col">Data</th>
-									  <th scope="col">Estado</th>
+									  <th scope="col"><font size="3"><center>Identificao do pedido</center></font></th>
+									  <th scope="col"><font size="3"><center>Data</center></font></th>
+									  <th scope="col"><font size="3"><center>Estado</center></font></th>
+                                      <th scope="col"><font size="3"><center>Acoes</center></font></th>
 									</tr>
 								  </thead>
 								  <tbody>
@@ -66,25 +67,37 @@
 								       <?php 											
 											while($dado = $connect_pedido->fetch_array()) { 
 												$estado = $dado['nome'];
-												echo $estado;
+                                                $codigo_pedido = $dado['cod_pedido'];
 												switch ($estado)
 												{
 													case "Cancelado":
-														$cor="#F08080";
+                                                        $botao="<button type='button' class='btn btn-danger'>Cancelado</button>";
 														break;
 													case "Aprovado":
-														$cor="#90EE90";
+														$botao="<button type='button' class='btn btn-success'>Aprovado</button>";
 														break;
 													default:
-														$cor="#EEDD82";
+														$botao="<button type='button' class='btn btn-warning'>Pendente</button>";
 														break;
 												}
 												?>
-												<tr bgcolor=<?=$cor?>>
-												  <td id="codigo_pedido"><?=$dado['cod_pedido']?></th>
-												  <td><?=$dado['data_Pedido']?></td>
-												  <td><?=$estado?></td>
-												  <td><button type="button" onclick="pegaPedido()" class="btn btn-success">Visualizar itens</button></td>
+												<tr>
+												  <td style="width:100px"><font size="3"><center><?=$codigo_pedido?></center></font></th>
+												  <td style="width:200px"><font size="3"><center><?=$dado['data_Pedido']?> - <?=$dado['hora']?></center></font></td>
+												  <td style="width:50px"><font size="3"><center><?=$botao?></center></font></td>
+                                                  <td style="width:300px"><form method="POST"  action="editar_Pedido.php">
+                                                        <div class="btn-group" role="group" aria-label="Exemplo básico">
+                                                          <input type="hidden" name="id" value='<?=$codigo_pedido?>' />
+                                                          <button type="button" class="btn btn-primary">Visualizar itens</button>
+                                                            <?php 
+                                                                if($estado!="Aprovado" && $estado!="Cancelado")
+                                                                {?>
+                                                                    <button type="submit" class="btn btn-primary">Editar pedido</button>
+                                                                    <button type="submit" class="btn btn-primary">Cancelar pedido</button>
+                                                          <?php } ?>
+                                                        </div>
+                                                      </form>
+                                                  </td>
 												</tr>
 									   <?php } ?>
 								  </tbody>

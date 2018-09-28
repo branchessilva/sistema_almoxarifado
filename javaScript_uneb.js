@@ -65,19 +65,25 @@
 				document.getElementById('nome').value='';
 			}
 		}
-		
+		<!-- Apenas conrima o envio do formulário -->
 		function confirma() {
 			confirm("Confirma cadastro?");
 			
 			
 		}
 		
-		function pegaPedido() {
-			var linha = document.getElementById("codigo_pedido");
-			console.log(linha);
-			
+        var id ; //Variavel global
+        //Pega o id do pedido na tebela de pedidos feitos 
+		function pegaPedido(idPedido) {
+            var id = idPedido;
+            console.log(id);
+            console.log( devolveId() );
 		}
-		
+		function devolveId()
+        {
+            return id=1;
+        }
+
 		function addItem()
 		{
 			var campos_max          = 10;   //max de 10 campos
