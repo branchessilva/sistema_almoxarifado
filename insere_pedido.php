@@ -36,28 +36,29 @@
 		$insere_pedido = "INSERT INTO pedido(solicitante, data_Pedido, fk_Estado, hora) VALUES ($matricula,'$dataFormatada', 2, '$hora')";
 		$result = mysql_query($insere_pedido,$con);
 		$id_Pedido = mysql_insert_id();
-		
-		if(isset($_POST["itens"]) && isset($_POST["quantidade"])) {
+		if(isset($_SESSION['item']) && isset($_SESSION['quantidade'])) {
 			$i= 0;
 			$j= 0;
-			foreach($_POST["quantidade"] as $quant) {
+			foreach($_SESSION['quantidade'] as $quant) {
 				$quantidade[$i] = $quant;
 				$i++;
 			}
-			foreach($_POST["itens"] as $item)
+			foreach($_SESSION['item'] as $item)
 			{
 				$produto[$j] = $item;
 				$j++;
 			}
 			for( $x=0; $x < $i; $x++)
 			{
+                echo $quantidade[$x],$produto[$x];
+                echo $id_Pedido;
 				//O @ esconde os warnings
-				@$insere_item_pedido = "INSERT INTO pedido_Item (f_Pedido, fk_Item, quantidade_Solicitada) VALUES ($id_Pedido,'$produto[$x]','$quantidade[$x]')";
-				@$result = mysql_query($insere_item_pedido,$con);
+				$insere_item_pedido = "INSERT INTO pedido_item (fk_Pedido, fk_Item, quantidade_Solicitada) VALUES ($id_Pedido,'$produto[$x]','$quantidade[$x]')";
+				$result = mysql_query($insere_item_pedido,$con);
 				if($result)
 				{
 					echo "<div class='alert alert-danger' role='alert'>Erro ao realizar pedido, você está sendo recirecionado!</div> ";
-					echo "<meta http-equiv=refresh content='3;URL=login.php'>";
+					//echo "<meta http-equiv=refresh content='3;URL=login.php'>";
 				}
 			}
 		}

@@ -17,19 +17,19 @@
 <html>
 <head>
 <title>SISTEMA ALMOXARIFADO - FAZER PEDIDO</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 
 <!--Para deixar a div responsiva-->
 <!-- O ERRO PODE ACONTECER AQUI DEPOIS POR CONTA DON ENDEREÇO DO LINK -->
-<link rel="stylesheet"  type="text/css"  href="./divResponsiva.css" />
-<link rel="stylesheet"  type="text/css"  href="./formularioResponsivo.css" />
-<link rel="stylesheet"  type="text/css"  href="./css_NavBar.css" />
+<link rel="stylesheet"  type="text/css"  href="./css/divResponsiva.css" />
+<link rel="stylesheet"  type="text/css"  href="./css/formularioResponsivo.css" />
+<link rel="stylesheet"  type="text/css"  href="./css/css_NavBar.css" />
  
 <!-- JavaScript -->
-<script type="text/javascript" src="javaScript_uneb.js" /></script>
+<script type="text/javascript" src="./js/javaScript_uneb.js" /></script>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- Usando jquery para os campos dinamicos de add itens-->
@@ -53,10 +53,10 @@
 	<div class="container">
 		<div class="box">
 			<div class="pgContato"> 
-				<legend align="center"> <font size='5' color='#FFFFFF'> Solicita&ccedil;&atilde;o de Material </font> </legend></br> </br>
+				<legend align="center"> <font size='5' color='#FFFFFF'> Solicitação de Material </font> </legend></br> </br>
 				<div class="divFormulario">  
 					<div class="formPedido">  
-						<form id="formPedido" action="insere_pedido.php" method="POST">
+						<form id="formPedido" action="editar_Pedido.php" method="POST">
 							<div id="inicio_div">
 								<?php 
 										while($dado = $connect_setor->fetch_array()) { ?>
@@ -68,19 +68,19 @@
 								<font size="4" color="#FFFFFF">Itens do pedido:</font>
 							</p>
 							<div id="div_pedido">
-									&nbsp;<font size="4" color="#FFFFFF">Material:</font>
-									<select name="itens[]" required style="width:auto">
+									<font size="4" color="#FFFFFF">Material:</font>
+									<select name="itens[]" required style="width:180px">
 										<option value="">Itens</option> 
 										<?php 
 										while($dado2 = $connect_itens->fetch_array()) { ?>
-											<option value="<?=$dado2['cod_item']?>"><?=$dado2['nome']?>&nbsp;-&nbsp;<?=$dado2['unidade_Tipo']?></option>
+											<option value="<?=$dado2['cod_item']?>"><?=utf8_encode($dado2['nome'])?>&nbsp;-&nbsp;<?=$dado2['unidade_Tipo']?></option>
 										<?php } ?>
 									</select>
-									<input type="text" style="width:auto" required="required" placeholder="Quantidade" name="quantidade[]" onkeypress="return SomenteNumero()">
-							</div >
-							     <div id="lista_itens">								
+									<input type="text" style="width:180px" required="required" placeholder="Quantidade" name="quantidade[]" onkeypress="return SomenteNumero()">
+                             <div id="lista_itens">								
 							</div>
                             <br>
+							</div >			
                             <div>
                                 <button type="button" id="add_item" onclick="carregarItens()" class="btn btn-primary">Adicionar itens</button>
                             <!--input type="button" id="add_item" onclick="carregarItens()" value="Adicionar Item"-->

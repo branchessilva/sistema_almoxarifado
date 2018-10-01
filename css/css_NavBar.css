@@ -1,11 +1,14 @@
 		body {
-		  margin: 0;
 		  font-family: Arial, Helvetica, sans-serif;
+		  scrollbar-arrow-color:#000000;
 		}
 
 		.topnav {
 		  overflow: hidden;
 		  background-color:#28549D;
+		  position: fixed;
+		  width: 100%;
+		  /*padding-top: 15px;*/
 		}
 
 		.topnav a {
@@ -57,7 +60,6 @@
 			border-collapse: collapse;
 			border-spacing: 0;
 			width: 110%;
-			border: 3px solid #28549D;
 			margin: auto;
 		}
 
@@ -67,7 +69,6 @@
 		}
 
 		tr:nth-child(even){
-		background-color: #6495ED;
 		text-color: #fff;
 		}
 		

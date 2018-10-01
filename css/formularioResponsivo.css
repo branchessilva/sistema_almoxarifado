@@ -1,13 +1,18 @@
-	.formPedido {  
-     width: 100%;  
+   .formPedido {  
+		width: 100%;
    }  
    .formPedido input {  
-     width: 90%;  
+     width: 40%;  
      margin-left: 10px;  
      margin-right: 10px;  
    }  
    .formPedido select{  
-     width: 90%;  
+     width: 30%;  
+     margin-left: 10px;  
+     margin-right: 10px;  
+   } 
+.formPedido button{  
+     width: 30%;  
      margin-left: 10px;  
      margin-right: 10px;  
    }  
@@ -21,47 +26,91 @@
      margin-right: 10px;  
      margin-top: 1px;  
    }  
-   
-
    /*Deixa centralizaado o formulário*/
    .pgContato  {
-	  padding: 70px 0;
+	  padding: 100px 0;
 	  background: #28549D;
-
+	  /*width: 1000%;*/
+	}
+	
+	.divFormulario {
+	  display: flex;
+	  overflow:auto;
+	  border: 3px solid;
+	  border-color:#ffffff;
 	}
 	
 	body {
-        margin: 0px
+      margin: 0px;
+      align-items: center;
     }
 	
 	form {
-	  margin: 0 auto;
-	  max-width: 850px;
+	  margin: 10%; /*Para aumentar o tamanho do formulário*/
+	  /*max-width: 1000px;*/
 	  padding: 20px 10px;
-	  background-color:rgba(192,192,192,0.3);
 	}
 
-	
 	/*Coloca cor embaixo do Navbar*/
     .container {
-        width: 100vw;
-        height: 100vh;
-        background: #fff;
+      margin: auto;
+      width: 80%;
+      padding: 100px;
+        
+        /*width: 100%;
+        background: #ffff;
         display: flex;
         flex-direction: row;
         justify-content: center;
-        align-items: center
+        align-items: center;
+		/*overflow: scroll;*/
+		/*z-index: -1;
+		position: absolute;*/
+		
+    }
+		/*Coloca cor embaixo do Navbar*/
+    .containerTable {
+      margin: auto;
+      width: 100%;
+      padding: 100px;
+        /*width: 100%;
+        background: #ffff;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+		/*overflow: scroll;*/
+		/*z-index: -1;
+		position: absolute;*/
+		
     }
 	/*Caixa branca do fómulário*/
-    .box {
-        width: 800px;
-        height: 600px;
-        background: #ffff;
+    .box {/*AJUSTE AQUI PARA RESPONSIVIDADE*/
+		width: 100%;
+        background: #28549D;
+		overflow:auto;
+		display: inline-block;
+        justify-content: center;
+        align-items: center;
+            
+    }
+    .boxtable {/*AJUSTE AQUI PARA RESPONSIVIDADE*/
+            width: 100%;
+            background: #FFFFFF;
+            overflow:auto;
+            display: inline-block;
+            justify-content: center;
+            align-items: center;
+
     }
 
+    table.itensPedido th {  
+    color: #FFFFFF; 
+    } 
+
 	label {
-    padding: 12px 12px 12px 0;
-    display: inline-block;
+		padding: 12px 12px 12px 0;
+		display: inline-block;
 	}
 	
 	
@@ -80,6 +129,7 @@
      border-bottom: 1px solid #ccc;  
      border-left: 1px solid #ccc;  
    }  
+   
    .pgContato textarea {  
      padding-left: 20px;  
      color: #292929;  
@@ -108,7 +158,8 @@
      margin-bottom: 20px;  
      border-bottom: 1px solid #ccc;  
      border-left: 1px solid #ccc;   
-   }  
+   } 
+   
    .botaoContato {  
      border-radius: 4px;  
      color: #fff;  
@@ -124,7 +175,41 @@
      border-bottom: 1px solid #500707;  
      border-right: 1px solid #500707;  
    }  
+   
    .botaoContato:hover {  
      opacity: 1.0;  
      transition: 1s;  
    }  
+   
+   #div_pedido
+	{
+		text-align: left;
+		padding-left: 1%;
+		padding-top: 1%;
+		width: 90%;
+		background-color:#FFFFF;
+		display: inline-block;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center
+
+	}
+	
+	
+	.BotaoSubmit
+	{
+	 border-radius: 4px;  
+     color: #fff;  
+     padding: 2px 40px;  
+     height: 40px;  
+     margin-top: 18px;  
+     opacity: 0.9;  
+     margin-bottom: 20px;  
+     cursor: pointer;  
+     background: #B22222;  
+     display: inline-block;  
+     border: none;  
+     border-bottom: 1px solid #500707;  
+     border-right: 1px solid #500707; 
+	}
+ 

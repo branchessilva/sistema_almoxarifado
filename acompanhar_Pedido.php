@@ -18,15 +18,15 @@
 
 <!--Para deixar a div responsiva-->
 <!-- O ERRO PODE ACONTECER AQUI DEPOIS POR CONTA DON ENDEREÇO DO LINK -->
-<link rel="stylesheet" href="./divResponsiva.css" />
-<link rel="stylesheet"  href="./acomp_Pedido.css" />
-<link rel="stylesheet"  href="./css_NavBar.css" />
+<link rel="stylesheet" href="./css/divResponsiva.css" />
+<link rel="stylesheet"  href="./css/acomp_Pedido.css" />
+<link rel="stylesheet"  href="./css/css_NavBar.css" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <!-- JavaScript -->
-<script type="text/javascript" src="./javaScript_uneb.js"></script>
-
+<script type="text/javascript" src="./js/javaScript_uneb.js" /></script>
+    
 <!-- Tabela-->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
