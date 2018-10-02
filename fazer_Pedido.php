@@ -56,12 +56,13 @@
 				<legend align="center"> <font size='5' color='#FFFFFF'> Solicitação de Material </font> </legend></br> </br>
 				<div class="divFormulario">  
 					<div class="formPedido">  
-						<form id="formPedido" action="editar_Pedido.php" method="POST">
+						<form id="formPedido" action="lista_item.php" method="POST">
 							<div id="inicio_div">
 								<?php 
 										while($dado = $connect_setor->fetch_array()) { ?>
                                             <font size="4" color="#FFFFFF">Unidade requisitante:</font>
                                             <input disabled type="text" name="nome" value="<?php echo $dado['nome'];?>"/>
+                                            <input hidden type="text" name="nome" value="<?php echo $dado['nome'];?>"/>
 								<?php } ?>
 							</div>
 							<p>
@@ -73,7 +74,7 @@
 										<option value="">Itens</option> 
 										<?php 
 										while($dado2 = $connect_itens->fetch_array()) { ?>
-											<option value="<?=$dado2['cod_item']?>"><?=utf8_encode($dado2['nome'])?>&nbsp;-&nbsp;<?=$dado2['unidade_Tipo']?></option>
+											<option value="<?=$dado2['cod_item']?>"><?=utf8_encode($dado2['nome'])?>&nbsp;- &nbsp;<?=$dado2['unidade_Tipo']?></option>
 										<?php } ?>
 									</select>
 									<input type="text" style="width:180px" required="required" placeholder="Quantidade" name="quantidade[]" onkeypress="return SomenteNumero()">

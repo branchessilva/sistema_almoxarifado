@@ -65,6 +65,7 @@
 				document.getElementById('nome').value='';
 			}
 		}
+
 		<!-- Apenas conrima o envio do formulário -->
 		function confirma() {
 			confirm("Confirma cadastro?");
@@ -72,7 +73,7 @@
 			
 		}
 		
-        var id ; //Variavel global
+        /*var id ; //Variavel global
         //Pega o id do pedido na tebela de pedidos feitos 
 		function pegaPedido(idPedido) {
             var id = idPedido;
@@ -82,7 +83,7 @@
 		function devolveId()
         {
             return id=1;
-        }
+        }*/
 
 		function addItem()
 		{
@@ -104,7 +105,15 @@
 				x--;
 			});
 		}
-		
+
+      /*Remove o campo quando o usuário for editar*/
+        $(document).ready(function(){
+            $('#lista_itens_editaveis').on("click",".remover_campo",function(e) {
+                    e.preventDefault();
+                    $(this).parent('div').remove();
+            });
+        });
+
 		/*função que pega os dados do BD e exibe no campo dinâmico*/
 		function carregarItens(){
 			//variáveis

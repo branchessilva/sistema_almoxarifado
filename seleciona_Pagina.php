@@ -8,7 +8,7 @@
             break;
 
         case 'Editar':
-            echo "edita";
+             header("location:editar_pedido.php"); 
             break;
     }
 ?>
