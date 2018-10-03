@@ -2,19 +2,27 @@
 		width: 100%;
    }  
    .formPedido input {  
-     width: 40%;  
-     margin-left: 10px;  
-     margin-right: 10px;  
-   }  
-   .formPedido select{  
-     width: 100%;  
-     margin-left: 10px;  
-     margin-right: 10px;  
-   } 
-.formPedido button{  
      width: 30%;  
      margin-left: 10px;  
      margin-right: 10px;  
+   }  
+   .formPedido select{
+     width: 30%; 
+     max-width: 50%;
+     min-width: 50%;
+     margin-left: 10px;  
+     margin-right: 10px;  
+   } 
+    a.tamanho
+    {
+        font-size: 3;
+    }
+  .formPedido button{  
+     width: 30%;  
+     margin-left: 10px;  
+     margin-right: 10px;
+     border-color:#fff;
+     float: right;
    }  
    .formPedido textarea {  
      width: 90%;  
@@ -37,6 +45,7 @@
 	  display: flex;
 	  overflow:auto;
 	  border: 3px solid;
+      border-width: 4px 0 4px 0;
 	  border-color:#ffffff;
 	}
 	
@@ -125,9 +134,11 @@
      -webkit-border-radius: 5px;  
      border-radius: 5px;  
      height: 40px;  
-     margin-bottom: 20px;  
+     margin-bottom: 5px;  
+     margin-top: 5px; 
      border-bottom: 1px solid #ccc;  
-     border-left: 1px solid #ccc;  
+     border-left: 1px solid #ccc;
+     border-color:#28549D;
    }  
    
    .pgContato textarea {  
@@ -146,7 +157,7 @@
 	}
 	 
 	.pgContato select {  
-    padding-left: 20px;  
+     padding-left: 20px;  
      color: #292929;  
      font-size: 18px;  
      background-color: #E9E9E9;  
@@ -154,10 +165,10 @@
      -moz-border-radius: 5px;  
      -webkit-border-radius: 5px;  
      border-radius: 5px;  
-     height: 40px;  
-     margin-bottom: 20px;  
+     height: 40px;    
      border-bottom: 1px solid #ccc;  
-     border-left: 1px solid #ccc;   
+     border-left: 1px solid #ccc; 
+     border-color:#28549D;
    } 
    
    .botaoContato {  
@@ -181,21 +192,25 @@
      transition: 1s;  
    }  
    
-   #div_pedido
+   #div_pedidos
 	{
-		text-align: left;
-		padding-left: 1%;
-		padding-top: 1%;
-		width: 90%;
-		background-color:#FFFFF;
-		display: inline-block;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center
-
+		border: solid;
+        border-color: #fff;
+        border-width: 0.1px;
+        display: flex;
+        -webkit-align-items: center;
+        align-items: center;
+        margin-bottom: 30px; 
+        background-color: #fff; 
+        max-width: 100%;
+        border-radius: 5px; 
 	}
 	
-	
+	.div_botao
+    {
+        margin-top: 50px; 
+    }
+
 	.BotaoSubmit
 	{
 	 border-radius: 4px;  

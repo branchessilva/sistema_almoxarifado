@@ -16,7 +16,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>SISTEMA ALMOXARIFADO - FAZER PEDIDO</title>
+<title>SISTEMA ALMOXARIFADO</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
@@ -42,18 +42,21 @@
 <body>
 
 	<div class="topnav " id="myTopnav">
-	  <a href="#home" class="active">Home</a>
-	  <a href="acompanhar_Pedido.php">Acompanhar pedidos</a>
-	  <a href="login.php">Sair</a>
-	  <a href="javascript:void(0);" class="icon" onclick="cria_Botao_NavBar();">
-		<i class="fa fa-bars"></i>
-	  </a>
+          <a href="#home" class="active"><font size="3">HOME</font></a>
+          <a href="acompanhar_Pedido.php"><font size="3">ACOMPANHAR PEDIDOS</font></a>
+          <a href="login.php"><font size="3">SAIR</font></a>
+          <a href="javascript:void(0);" class="icon" onclick="cria_Botao_NavBar();">
+            <i class="fa fa-bars"></i>
+	       </a>
 	</div>
 
 	<div class="container">
 		<div class="box">
-			<div class="pgContato"> 
-				<legend align="center"> <font size='5' color='#FFFFFF'> Solicitação de Material </font> </legend></br> </br>
+			<div class="pgContato">
+                        <center>
+                        <font size='5' color='#FFFFFF'> 
+                        SOLICITAÇÃO DE MATERIAL
+                        </font></center></br> </br>
 				<div class="divFormulario">  
 					<div class="formPedido">  
 						<form id="formPedido" action="lista_item.php" method="POST">
@@ -65,24 +68,22 @@
                                             <input hidden type="text" name="nome" value="<?php echo $dado['nome'];?>"/>
 								<?php } ?>
 							</div>
-							<p>
+							<br>
+                            <p>
 								<font size="4" color="#FFFFFF">Itens do pedido:</font>
 							</p>
-							<div id="div_pedido">
-									<font size="4" color="#FFFFFF">Material:</font>
-									<select name="itens[]" required style="width:180px">
-										<option value="">Itens</option> 
+							<div id="div_pedidos">
+									<select name="itens[]" required>
+										<option value="">Selecione um item</option> 
 										<?php 
 										while($dado2 = $connect_itens->fetch_array()) { ?>
 											<option value="<?=$dado2['cod_item']?>"><?=utf8_encode($dado2['nome'])?>&nbsp;- &nbsp;<?=$dado2['unidade_Tipo']?></option>
 										<?php } ?>
-									</select>
-									<input type="text" style="width:180px" required="required" placeholder="Quantidade" name="quantidade[]" onkeypress="return SomenteNumero()">
-                             <div id="lista_itens">								
+									</select><input type="text" required="required" placeholder="Quantidade" name="quantidade[]" onkeypress="return SomenteNumero()">
+							</div >	
+                            <div id="lista_itens">								
 							</div>
-                            <br>
-							</div >			
-                            <div>
+                            <div id="div_botao">
                                 <button type="button" id="add_item" onclick="carregarItens()" class="btn btn-primary">Adicionar itens</button>
                             <!--input type="button" id="add_item" onclick="carregarItens()" value="Adicionar Item"-->
 								<button type="submit"  id="BotaoSubmit" class="btn btn-primary  ">Concluir pedido</button>

@@ -148,14 +148,14 @@
 					{
 						$("h2").html(retorno[0].erro);
 					}else{
-						itens +="<div id='div_pedido'>\<font size='4' color='#FFFFFF'>Material:</font>\<select name='itens[]' required='required' style='width:180px'>\<option value=''>Itens</option>";
+						itens +="<div id='div_pedidos'>\<select name='itens[]' required='required'>\<option value=''>Selecione um item</option>";
 						//Laço para criar linhas da tabela
 						for(var i = 0; i<retorno.length; i++)
 						{
 							itens += "<option value="+retorno[i].cod_item+">"+retorno[i].nome+"-"+retorno[i].unidade_Tipo+"</option>";
 						}
 						itens +="</select>";
-						itens +="<input name='quantidade[]' required='required' type='text' style='width:180px' placeholder='Quantidade' onkeypress='return SomenteNumero()'>\<a href='#' class='remover_campo'>Remover</a>\</div>";
+						itens +="<input name='quantidade[]' required='required' type='text'  placeholder='Quantidade' onkeypress='return SomenteNumero()'>\<a href='#' class='remover_campo text-danger'>Remover</a>\</div>";
 						$('#lista_itens').append(itens);
 						
 						$('#lista_itens').on("click",".remover_campo",function(e) {

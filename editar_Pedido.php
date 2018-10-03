@@ -82,8 +82,13 @@
                                                     ?>
                                                     <div id="lista_itens_editaveis">
                                                     <font size="4" color="#FFFFFF">Material:</font>
-                                                    <input disabled type="text" style="width:180px" required="required" name="itens[]" value="<?php echo utf8_encode($linha['nome']);?>">
-                                                    <input type="text" style="width:180px" required="required" name="iquantidade[]" value="<?php echo $quantidade[$x];?>">
+                                                        
+                                                    <input disabled type="text" style="width:180px" required="required" value="<?php echo utf8_encode($linha['nome']);?>">
+                                                        
+                                                    <input hidden type="text" style="width:180px"  name="itens[]" value="<?php echo $produto[$x];?>">
+                                                        
+                                                    <input type="text" style="width:180px" required="required" name="quantidade[]" onkeypress="return SomenteNumero()" value="<?php echo $quantidade[$x];?>">
+                                                        
                                                     <a href="#" class="remover_campo" >Remover</a>
                                                     </div>
                                                      <div id="lista_itens">								

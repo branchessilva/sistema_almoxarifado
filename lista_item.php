@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>SISTEMA ALMOXARIFADO - FAZER PEDIDO</title>
+<title>SISTEMA ALMOXARIFADO</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
@@ -36,12 +36,12 @@
 <body>
 
 	<div class="topnav " id="myTopnav">
-	  <a href="#home" class="active">Home</a>
-	  <a href="acompanhar_Pedido.php">Acompanhar pedidos</a>
-	  <a href="login.php">Sair</a>
-	  <a href="javascript:void(0);" class="icon" onclick="cria_Botao_NavBar();">
-		<i class="fa fa-bars"></i>
-	  </a>
+          <a href="#home" class="active"><font size="3">HOME</font></a>
+          <a href="acompanhar_Pedido.php"><font size="3">ACOMPANHAR PEDIDOS</font></a>
+          <a href="login.php"><font size="3">SAIR</font></a>
+          <a href="javascript:void(0);" class="icon" onclick="cria_Botao_NavBar();">
+            <i class="fa fa-bars"></i>
+	       </a>
 	</div>
 
 	<div class="containerTable">
