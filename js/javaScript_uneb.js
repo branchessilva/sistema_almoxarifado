@@ -112,8 +112,15 @@
                     e.preventDefault();
                     $(this).parent('div').remove();
             });
-        });
+            
+            //Pega o id do item na tabela
+            $(".btn_idPedido").on('click', function(){
+                var idPedido = ($(this).attr('id'));
+                window.location = "exibe_itens.php?Pedido="+idPedido;
 
+         });
+      });
+       
 		/*função que pega os dados do BD e exibe no campo dinâmico*/
 		function carregarItens(){
 			//variáveis

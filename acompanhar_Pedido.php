@@ -31,10 +31,18 @@
 <!-- Usando jquery para os campos dinamicos de add itens-->
 <script src="jquery-1.11.3.js" type="text/javascript"></script> 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-    
+		<script type="text/javascript" src="js/jquery.dataTables.min.js"></script>    
 <!-- BOOtstrap -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#examples').dataTable( {
+        "aaSorting": [[ 1, "desc" ]],
+		"aLengthMenu": [[10,25,50,100,-1], [10,25,50,100,"Todos"]]
+    });
+});
+</script>  
 </head>
 
 	<body>
@@ -58,11 +66,12 @@
 					<div> 
                         <div class="table-responsive">
                               <legend align="center"> <font size='5' color='000'> PEDIDOS REALIZADOS </font> </legend> <br><br>
-							  <table name="itensPedido" class="table table-striped" align="center">
+							  <table name="itensPedido" id="examples" class="table table-striped" align="center">
 								  <thead>
 									<tr>
-									  <th scope="col"><font size="3"><center>Estado do pedido</center></font></th>
-									  <th scope="col"><font size="3"><center>Data e hora do pedido realizado</center></font></th>
+                                      <th scope="col" ><font size="3"><center>CÓDIGO</center></font></th>
+									  <th scope="col"><font size="3"><center>ESTADO DO PEDIDO</center></font></th>
+									  <th scope="col"><font size="3"><center>DATA E HORA DO PEDIDO REALIZADO</center></font></th>
                                       <th scope="col"><font size="3"><center>Ações</center></font></th>
 									</tr>
 								  </thead>
@@ -86,11 +95,12 @@
 												}
 												?>
 												<tr>
+                                                <td style="width:10px" class="idItem"><font size="3"><center><?=$dado['cod_pedido']?></center></font></td>
                                                  <td style="width:50px"><font size="3"><center><?=$botao?></center></font></td>
-                                                 <td style="width:200px"><font size="3"><center><?=$dado['data_Pedido']?> - <?=$dado['hora']?></center></font></td>
+                                                 <td style="width:200px"><font size="3"><center><?=$dado['data_Pedido']?> / <?=$dado['hora']?></center></font></td>
                                                   <td style="width:200px">
                                                          <center>   
-                                                             <button type="button" class="btn btn-primary"><font size='3'>Visualizar itens</font></button>
+                                                             <button type="button" id="<?=$dado['cod_pedido']?>" class="btn_idPedido btn btn-primary"><font size='3'>Visualizar itens</font></button>
                                                                 <?php 
                                                                     if($estado!="Aprovado" && $estado!="Cancelado")
                                                                     {?>
