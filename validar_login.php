@@ -27,8 +27,8 @@
 			
 			/*Pesquisar o perfil do usuario para direcionar a sua página inicial*/
 			$consulta_perfil = "SELECT P.cod_perfil FROM perfil AS P INNER JOIN usuario AS U ON P.cod_perfil=U.fk_Perfil WHERE U.matricula='$user'";
-			$connect_perfil = mysqli_query($mysqli, $consulta_perfil) or die(mysqli_error($mysqli));
-			$dado = $connect_perfil->fetch_array();
+			$connect_perfil = mysql_query($consulta_perfil, $con) or die(mysqli_error());
+			$dado = mysql_fetch_assoc($connect_perfil);
 			
 			if($dado['cod_perfil'] == AUTORIZADO)
 			{

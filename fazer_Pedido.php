@@ -7,9 +7,9 @@
 	
 	/*Pegar dados do setor no BD */
 	$consulta_setor = "SELECT S.nome, S.cod_setor FROM setor AS S INNER JOIN usuario AS U ON S.cod_setor=U.fk_Perfil WHERE U.matricula='$_SESSION[matricula]'";
-	$connect_setor = mysqli_query($mysqli, $consulta_setor ) or die(mysqli_error($mysqli));
+	$connect_setor = mysql_query($consulta_setor, $con ) or die(mysql_query());
 	$consulta_itens = "SELECT * FROM itens";
-	$connect_itens = mysqli_query($mysqli, $consulta_itens ) or die(mysqli_error($mysqli));
+	$connect_itens = mysql_query($consulta_itens, $con ) or die(mysql_query());
 
 ?>
 
@@ -62,7 +62,7 @@
 						<form id="formPedido" action="lista_item.php" method="POST">
 							<div id="inicio_div">
 								<?php 
-										while($dado = $connect_setor->fetch_array()) { ?>
+										while($dado = mysql_fetch_assoc($connect_setor)) { ?>
                                             <font size="4" color="#FFFFFF">Unidade requisitante:</font>
                                             <input disabled type="text" name="nome" value="<?php echo $dado['nome'];?>"/>
                                             <input hidden type="text" name="nome" value="<?php echo $dado['nome'];?>"/>
@@ -76,7 +76,7 @@
 									<select name="itens[]" required>
 										<option value="">Selecione um item</option> 
 										<?php 
-										while($dado2 = $connect_itens->fetch_array()) { ?>
+										while($dado2 = mysql_fetch_assoc($connect_itens)) { ?>
 											<option value="<?=$dado2['cod_item']?>"><?=utf8_encode($dado2['nome'])?>&nbsp;- &nbsp;<?=$dado2['unidade_Tipo']?></option>
 										<?php } ?>
 									</select><input type="text" required="required" placeholder="Quantidade" name="quantidade[]" onkeypress="return SomenteNumero()">

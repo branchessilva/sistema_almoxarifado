@@ -118,7 +118,21 @@
                 var idPedido = ($(this).attr('id'));
                 window.location = "exibe_itens.php?Pedido="+idPedido;
 
-         });
+            });
+             //Pega o id do item na tabela
+            $(".btn_CancelaPedido").on('click', function(){
+                var idPedido = ($(this).attr('id'));
+                if (confirm('Tem certeza que quer cancelar o pedido?')){ 
+                    window.location = "cancela_pedido.php?Pedido="+idPedido;
+                }
+
+            });
+            //Pega o id do item na tabela
+            $(".btn_EditarPedido").on('click', function(){
+                var idPedido = ($(this).attr('id'));
+                    window.location = "editar_Pedido_Criado.php?Pedido="+idPedido;
+
+            });
       });
        
 		/*função que pega os dados do BD e exibe no campo dinâmico*/

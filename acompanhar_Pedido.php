@@ -4,10 +4,10 @@
 	
 	include "connect_BD.php";
 	require "connect_BD.php";
-	$condicaoData = date('Y-m-d', strtotime("-3 days"));
+	$condicaoData = date('Y-m-d');
 	$matricula = $_SESSION["matricula"];
-	$contulta_pedido = "SELECT P.cod_pedido, P.data_Pedido, P.hora, E.nome FROM pedido as P INNER JOIN estado as E ON (P.solicitante = $matricula AND P.fk_Estado = E.cod_Estado) where P.data_Pedido >= $condicaoData ORDER BY P.data_Pedido DESC";
-	$connect_pedido = mysqli_query($mysqli, $contulta_pedido ) or die(mysqli_error($mysqli));
+	$contulta_pedido = "SELECT P.cod_pedido, P.data_Pedido, P.hora, E.nome, E.cod_estado FROM pedido as P INNER JOIN estado as E ON (P.solicitante = $matricula AND P.fk_Estado = E.cod_Estado) WHERE E.cod_estado!=4 ORDER BY P.data_hora ASC";
+	$connect_pedido = mysql_query($contulta_pedido, $con) or die(mysql_query());
 ?>
 <!DOCTYPE html>
 <html>
@@ -35,6 +35,9 @@
 <!-- BOOtstrap -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    
+    
+    
 <script type="text/javascript">
 $(document).ready(function() {
     $('#examples').dataTable( {
@@ -43,6 +46,11 @@ $(document).ready(function() {
     });
 });
 </script>  
+    
+    
+    
+    
+    
 </head>
 
 	<body>
@@ -50,6 +58,7 @@ $(document).ready(function() {
 	<div class="topnav " id="myTopnav">
           <a href="#home" class="active"><font size="3">HOME</font></a>
           <a href="fazer_Pedido.php"><font size="3">FAZER PEDIDO</font></a>
+          <a href="pedidos_cancelados.php"><font size="3">PEDIDOS QUE CANCELEI</font></a>
           <a href="login.php"><font size="3">SAIR</font></a>
           <a href="javascript:void(0);" class="icon" onclick="cria_Botao_NavBar();">
             <i class="fa fa-bars"></i>
@@ -78,33 +87,34 @@ $(document).ready(function() {
 								  <tbody>
 										
 								       <?php 											
-											while($dado = $connect_pedido->fetch_array()) { 
+											while($dado = mysql_fetch_assoc($connect_pedido)) { 
 												$estado = $dado['nome'];
                                                 $codigo_pedido = $dado['cod_pedido'];
 												switch ($estado)
 												{
 													case "Cancelado":
-                                                        $botao="<button type='button' class='btn btn-danger'><font size='3'>Cancelado</font></button>";
+                                                        $botao="<button type='button' class='btn btn-danger'><font size='3'>Pedido revogado</font></button>";
 														break;
 													case "Aprovado":
-														$botao="<button type='button' class='btn btn-success'><font size='3'>Aprovado</font></button>";
+														$botao="<button type='button' class='btn btn-success'><font size='3'>Aguardando retirada</font></button>";
 														break;
 													default:
-														$botao="<button type='button' class='btn btn-warning'><font size='3'>Pendente</font></button>";
+														$botao="<button type='button' class='btn btn-warning'><font size='3'>Aguardando análise</font></button>";
 														break;
 												}
 												?>
 												<tr>
                                                 <td style="width:10px" class="idItem"><font size="3"><center><?=$dado['cod_pedido']?></center></font></td>
                                                  <td style="width:50px"><font size="3"><center><?=$botao?></center></font></td>
-                                                 <td style="width:200px"><font size="3"><center><?=$dado['data_Pedido']?> / <?=$dado['hora']?></center></font></td>
-                                                  <td style="width:200px">
+                                                 <td style="width:200px"><font size="3"><center><?=date('d/m/Y',strtotime($dado['data_Pedido']))?> ás <?=$dado['hora']?></center></font></td>
+                                                  <td style="width:300px">
                                                          <center>   
                                                              <button type="button" id="<?=$dado['cod_pedido']?>" class="btn_idPedido btn btn-primary"><font size='3'>Visualizar itens</font></button>
                                                                 <?php 
                                                                     if($estado!="Aprovado" && $estado!="Cancelado")
                                                                     {?>
-                                                                        <button type="submit" class="btn btn-primary"><font size='3'>Cancelar pedido</font></button>
+                                                                        <button type="button" id="<?=$dado['cod_pedido']?>" class="btn_CancelaPedido btn btn-primary"><font size='3'>Cancelar pedido</font></button>
+                                                                        <button type="button" id="<?=$dado['cod_pedido']?>" class="btn_EditarPedido btn btn-primary"><font size='3'>Editar pedido</font></button>
                                                               <?php } ?>
                                                           </center>
                                                   </td>

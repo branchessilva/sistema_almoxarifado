@@ -29,11 +29,12 @@
 		$data = date("d/m/Y");
 		//Pega a hora
 		$hora = date('H:i:s');
+        $data_hora = date("Y-m-d H:i:s");   
 
 		//Exploda a data para entrar no formato aceito pelo DB.
 		$dataAtual = explode('/', $data);
 		$dataFormatada = $dataAtual[2].'/'.$dataAtual[1].'/'.$dataAtual[0];
-		$insere_pedido = "INSERT INTO pedido(solicitante, data_Pedido, fk_Estado, hora) VALUES ($matricula,'$dataFormatada', 2, '$hora')";
+		$insere_pedido = "INSERT INTO pedido(solicitante, data_Pedido, fk_Estado, hora, data_hora) VALUES ($matricula,'$dataFormatada', 2, '$hora', '$data_hora')";
 		$result = mysql_query($insere_pedido,$con);
 		$id_Pedido = mysql_insert_id();
 		if(isset($_SESSION['item']) && isset($_SESSION['quantidade'])) {

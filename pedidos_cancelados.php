@@ -1,22 +1,19 @@
 <?php
-    include "verifica.php";
+	include "verifica.php";
 	require "verifica.php";
-
-    include "connect_BD.php";
+	
+	include "connect_BD.php";
 	require "connect_BD.php";
-    /*Pega o codigo do pedido da tabela correspondente a linha clicada*/
-    $PegaPedido = $_GET['Pedido'];
-    
-    $contulta_itens_pedido = "SELECT I.unidade_Tipo, I.nome, PI.quantidade_Solicitada, P.data_Pedido FROM pedido_item as PI INNER JOIN itens as I ON (PI.fk_Pedido = $PegaPedido AND PI.fk_Item = I.cod_item) INNER JOIN pedido as P ON (PI.fk_Pedido = P.cod_pedido)";
-	$connect_itens_pedido = mysql_query($contulta_itens_pedido, $con) or die(mysql_error());
-    $linha = mysql_fetch_assoc($connect_itens_pedido);
-    $total = mysql_num_rows($connect_itens_pedido); // Total de itens retornados
-    $data = date('d/m/Y',strtotime($linha['data_Pedido']));
+	$matricula = $_SESSION["matricula"];
+
+	$contulta_pedido_cancelado = "SELECT P.cod_pedido, P.data_Pedido, P.hora, E.nome, E.cod_estado FROM pedido as P INNER JOIN estado as E ON (P.solicitante = $matricula AND P.fk_Estado = E.cod_Estado) WHERE E.cod_estado=4 ORDER BY P.data_Pedido DESC";
+
+	$connect_pedido = mysql_query($contulta_pedido_cancelado, $con) or die(mysql_query());
+    $total = mysql_num_rows($connect_pedido); // Total de itens retornados
     if($total == 0)
     {
-         echo"<script type='text/javascript'>alert('Sem itens cadastrados nesse pedido!');window.location.href='acompanhar_Pedido.php';</script>";
+         echo"<script type='text/javascript'>alert('Nenhum pededido foi cancelado!');window.location.href='acompanhar_Pedido.php';</script>";
     }
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -66,8 +63,8 @@ $(document).ready(function() {
 
 	<div class="topnav " id="myTopnav">
           <a href="#home" class="active"><font size="3">HOME</font></a>
-          <a href="fazer_Pedido.php"><font size="3">FAZER PEDIDO</font></a>
           <a href="acompanhar_Pedido.php"><font size="3">ACOMPANHAR PEDIDO</font></a>
+          <a href="fazer_Pedido.php"><font size="3">FAZER PEDIDO</font></a>
           <a href="login.php"><font size="3">SAIR</font></a>
           <a href="javascript:void(0);" class="icon" onclick="cria_Botao_NavBar();">
             <i class="fa fa-bars"></i>
@@ -83,27 +80,33 @@ $(document).ready(function() {
 				<div class="">  
 					<div> 
                         <div class="table-responsive">
-                              <legend align="center"> <font size='5' color='000'> ITENS DO PEDIDO REALIZADO EM: <?=  date('d/m/Y',strtotime($linha['data_Pedido']));?> </font> </legend> <br><br>
+                              <legend align="center"> <font size='5' color='000'> PEDIDOS CANCELADOS </font> </legend> <br><br>
 							  <table name="itensPedido" id="examples" class="table table-striped" align="center">
 								  <thead>
 									<tr>
-                                      <th scope="col" ><font size="3"><center>NOME</center></font></th>
-									  <th scope="col"><font size="3"><center>QUANTIDADE SOLICITADA</center></font></th>
-                                        <th scope="col"><font size="3"><center>UNIDADE</center></font></th>
+                                      <th scope="col" ><font size="3"><center>CÓDIGO</center></font></th>
+									  <th scope="col"><font size="3"><center>ESTADO DO PEDIDO</center></font></th>
+									  <th scope="col"><font size="3"><center>DATA E HORA DO PEDIDO REALIZADO</center></font></th>
+                                      <th scope="col"><font size="3"><center>Ações</center></font></th>
 									</tr>
 								  </thead>
 								  <tbody>
-								    <tr>
-                                        <td style="width:10px" class="idItem"><font size="3"><center><?=utf8_encode($linha['nome'])?></center></font></td>
-                                        <td style="width:200px"><font size="3"><center><?=$linha['quantidade_Solicitada']?></center></font></td>
-                                        <td style="width:200px"><font size="3"><center><?=$linha['unidade_Tipo']?></center></font></td>
-								    </tr>
+										
 								       <?php 											
-											while($dado = mysql_fetch_assoc($connect_itens_pedido)) { ?>
+											while($dado = mysql_fetch_assoc($connect_pedido)) { 
+												$estado = $dado['nome'];
+                                                $codigo_pedido = $dado['cod_pedido'];
+                                                $botao="<button type='button' class='btn btn-danger'><font size='3'>Cancelado</font></button>";
+												?>
 												<tr>
-                                                <td style="width:10px" class="idItem"><font size="3"><center><?=utf8_encode($dado['nome'])?></center></font></td>
-                                                 <td style="width:200px"><font size="3"><center><?=$dado['quantidade_Solicitada']?></center></font></td>
-                                                <td style="width:200px"><font size="3"><center><?=$dado['unidade_Tipo']?></center></font></td>
+                                                <td style="width:10px" class="idItem"><font size="3"><center><?=$dado['cod_pedido']?></center></font></td>
+                                                 <td style="width:50px"><font size="3"><center><?=$botao?></center></font></td>
+                                                 <td style="width:200px"><font size="3"><center><?=date('d/m/Y',strtotime($dado['data_Pedido']))?> ás <?=$dado['hora']?></center></font></td>
+                                                  <td style="width:200px">
+                                                         <center>   
+                                                             <button type="button" id="<?=$dado['cod_pedido']?>" class="btn_idPedido btn btn-primary"><font size='3'>Visualizar itens</font></button>
+                                                          </center>
+                                                  </td>
 												</tr>
 									   <?php } ?>
 								  </tbody>

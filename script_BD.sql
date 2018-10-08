@@ -64,3 +64,4 @@ INSERT INTO itens (cod_Item, nome, quantidade_Estoque, unidade_Tipo) VALUES (1,"
 Insert into estado (nome) values ('Aprovado');
 Insert into estado (nome) values ('Pendente');
 Insert into estado (nome) values ('Cancelado');
+Insert into estado (nome) values ('Cancelado pelo usuario');
