@@ -10,5 +10,8 @@
         case 'Editar':
              header("location:editar_pedido.php"); 
             break;
+        case 'Confirmar_Edição':
+            header("location:insere_pedido_editado.php");
+            break;
     }
 ?>

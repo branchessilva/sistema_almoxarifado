@@ -108,7 +108,7 @@
 
       /*Remove o campo quando o usuário for editar*/
         $(document).ready(function(){
-            $('#lista_itens_editaveis').on("click",".remover_campo",function(e) {
+            $('#div_pedidos').on("click",".remover_campo",function(e) {
                     e.preventDefault();
                     $(this).parent('div').remove();
             });
@@ -187,3 +187,10 @@
 				}
 			});
 		}
+        
+        //Função que remove um item já escolhido do select
+        function retiraOption(selec)
+        {
+            $("#itens option[value='selec']").remove();
+            //document.getElementsByName("itens[]").remove(selec.selectedIndex);
+        }

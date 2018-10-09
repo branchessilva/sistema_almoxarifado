@@ -73,7 +73,7 @@
 								<font size="4" color="#FFFFFF">Itens do pedido:</font>
 							</p>
 							<div id="div_pedidos">
-									<select name="itens[]" required>
+									<select name="itens[]" onChange="retiraOption(this);" required>
 										<option value="">Selecione um item</option> 
 										<?php 
 										while($dado2 = mysql_fetch_assoc($connect_itens)) { ?>

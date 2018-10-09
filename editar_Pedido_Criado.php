@@ -7,17 +7,19 @@
 
     /*Pega o codigo do pedido da tabela correspondente a linha clicada*/
     $PegaPedido = $_GET['Pedido'];
+    $_SESSION['IdPedido'] = $PegaPedido;
 
     //Consulta o setor
     $consulta_setor = "SELECT S.nome, S.cod_setor FROM setor AS S INNER JOIN usuario AS U ON S.cod_setor=U.fk_Perfil WHERE U.matricula='$_SESSION[matricula]'";
 	$connect_setor = mysql_query($consulta_setor, $con ) or die(mysql_query());
     $linha_setor = mysql_fetch_assoc($connect_setor);
     //Pega os itens do pedido
-    $contulta_itens_pedido = "SELECT I.unidade_Tipo, I.nome, PI.quantidade_Solicitada, P.data_Pedido FROM pedido_item as PI INNER JOIN itens as I ON (PI.fk_Pedido = $PegaPedido AND PI.fk_Item = I.cod_item) INNER JOIN pedido as P ON (PI.fk_Pedido = P.cod_pedido)";
+    $contulta_itens_pedido = "SELECT I.cod_item, I.unidade_Tipo, I.nome, PI.quantidade_Solicitada, P.data_Pedido FROM pedido_item as PI INNER JOIN itens as I ON (PI.fk_Pedido = $PegaPedido AND PI.fk_Item = I.cod_item) INNER JOIN pedido as P ON (PI.fk_Pedido = P.cod_pedido)";
 	$connect_itens_pedido = mysql_query($contulta_itens_pedido, $con) or die(mysql_error());
-    $linha = mysql_fetch_assoc($connect_itens_pedido);
+    //$linha = mysql_fetch_assoc($connect_itens_pedido);
     $total = mysql_num_rows($connect_itens_pedido); // Total de itens retornados
-    $data = date('d/m/Y',strtotime($linha['data_Pedido']));
+    //$data = date('d/m/Y',strtotime($linha['data_Pedido']));
+    
     if($total == 0)
     {
          echo"<script type='text/javascript'>alert('Sem itens cadastrados nesse pedido!');window.location.href='acompanhar_Pedido.php';</script>";
@@ -69,7 +71,7 @@
                                 <legend align="center"><font size='5' color='#FFFFFF'>  Editar Solicitação de Material Pendente</font> </legend></br> </br>
                 				<div class="divFormulario">  
                                     <div class="formPedido">  
-                                      <form id="formPedido" action="lista_item.php" method="POST">
+                                      <form id="formPedido" action="lista_itens_pendentes.php" method="POST">
                                         <div id="inicio_div">
                                             <font size="4" color="#FFFFFF">Unidade requisitante:</font>
                                             <input disabled type="text" name="nome" value="<?php echo $linha_setor['nome'];?>"/>
@@ -79,6 +81,14 @@
                                           <p>
                                                 <font size="4" color="#FFFFFF">Itens do pedido:</font>
                                           </p>
+                                        <?php 
+										while($dados = mysql_fetch_assoc($connect_itens_pedido)) { ?>
+                                            <div id="div_pedidos">
+                                                <select name="itens[]" required>
+                                                <option value="<?=$dados['cod_item']?>"><?=utf8_encode($dados['nome'])?>&nbsp;- &nbsp;<?=$dados['unidade_Tipo']?></option>
+                                                </select><input type="text" required="required" name="quantidade[]" onkeypress="return SomenteNumero()" value="<?php echo $dados['quantidade_Solicitada'];?>"><a href="#" class="remover_campo text-danger" >Remover</a>
+                                            </div>   
+                                        <?php }?>
                                          <div id="lista_itens">								
 							             </div>
                                           <br><div>

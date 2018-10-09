@@ -76,24 +76,16 @@
                                                 }
                                                 for( $x=0; $x < $i; $x++)
                                                 {
-                                                    $busca_item = "select nome from itens where cod_item ='$produto[$x]'";
+                                                    $busca_item = "select nome, unidade_Tipo from itens where cod_item ='$produto[$x]'";
                                                     $result = mysql_query($busca_item,$con);
                                                     // transforma os dados em um array
                                                     $linha = mysql_fetch_assoc($result);
                                                     ?>
-                                                    <div id="lista_itens_editaveis">
-                                                    <font size="4" color="#FFFFFF">Material:</font>
-                                                        
-                                                    <input disabled type="text" style="width:180px" required="required" value="<?php echo utf8_encode($linha['nome']);?>">
-                                                        
-                                                    <input hidden type="text" style="width:180px"  name="itens[]" value="<?php echo $produto[$x];?>">
-                                                        
-                                                    <input type="text" style="width:180px" required="required" name="quantidade[]" onkeypress="return SomenteNumero()" value="<?php echo $quantidade[$x];?>">
-                                                        
-                                                    <a href="#" class="remover_campo" >Remover</a>
-                                                    </div>
-                                                     <div id="lista_itens">								
-							                         </div>
+                                                    <div id="div_pedidos">
+                                                        <select name="itens[]" required>
+                                                        <option value="<?php echo $produto[$x];?>"><?php echo utf8_encode($linha['nome']);?>&nbsp;- &nbsp;<?=$linha['unidade_Tipo']?></option>
+                                                        </select><input type="text" required="required" name="quantidade[]" onkeypress="return SomenteNumero()" value="<?php echo $quantidade[$x];?>"><a href="#" class="remover_campo text-danger" >Remover</a>
+                                                    </div> 
                                             <?php }
                                         }?>
                                           <br><div>

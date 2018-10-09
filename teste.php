@@ -1,59 +1,45 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>SISTEMA ALMOXARIFADO - FAZER PEDIDO</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/js/bootstrap.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.css" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/css/bootstrap.css" rel="stylesheet" />
+<script type="text/javascript">
+    $(".selectpicker").on("change", function() {
+    var self = $(this);
+    var values = self.val();
 
-<!--Para deixar a div responsiva-->
-<!-- O ERRO PODE ACONTECER AQUI DEPOIS POR CONTA DON ENDEREÇO DO LINK -->
-<link rel="stylesheet" href="css\divResponsiva.css" />
-<link rel="stylesheet"  href="css\formularioResponsivo.css" />
-<link rel="stylesheet"  href="css\css_NavBar.css" />
+    $(".selectpicker").not(self).each(function() {
+        var _values = $(this).val();
+        for (var v = _values.length; v--;) {
+            if (values.indexOf(_values[v]) >= 0) {
+                _values.splice(v, 1);
+            }
+        }
 
-<!-- JavaScript -->
-<script type="text/javascript" src="js\javaScript.js"></script>
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
-
-	<div class="topnav" id="myTopnav">
-	  <a href="#home" class="active">Home</a>
-	  <a href="#news">Acompanhar pedidos</a>
-	  <a href="login.html">Sair</a>
-	  <a href="javascript:void(0);" class="icon" onclick="cria_Botao_NavBar();">
-		<i class="fa fa-bars"></i>
-	  </a>
-	</div>
-
-	<div class="container">
-		<div class="box">
-			<div class="pgContato"> 
-				<legend align="center"> <font size='5' color='#FFFFFF'> Solicitacao de Material </font> </legend>
-				<div class="divFormulario">  
-					<div class="formPedido">  
-						<form id="formPedido" action="" method="GET">
-							<p>
-								<font size="4" color="#FFFFFF">Unidade requisitante:</font>
-							</p>
-							<select id="country" name="country">
-								<option value="australia">DCET</option>
-								<option value="canada">COLEGIADO</option>
-								<option value="usa">...</option>
-							</select>
-							<p>
-								<font size="4" color="#FFFFFF">C&oacute;digo do setor:</font>
-							</p>
-							<input type="text" id="numero" name="numero" placeholder="N&uacute;mero..." onkeypress='return SomenteNumero(event)' disable />
-							<div id="campoPai"></div>
-							<input type="button" value="Adicionar item" onClick="addCampos();">
-							<br><br><input type="submit" value="Solicitar">
-						<form>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</body>
-</html>
+        $(this).val(_values);
+    });
+});
+</script>
+<select class="selectpicker" multiple>
+      <option value="1">Líder</option>
+      <option value="10">Para Conhecimentor</option>
+      <option value="11">Participante</option>
+    </select>
+    <br><br>
+    <select class="selectpicker" multiple>
+      <option value="1">Líder</option>
+      <option value="10">Para Conhecimentor</option>
+      <option value="11">Participante</option>
+    </select>
+    <br><br>
+    <select class="selectpicker" multiple>
+      <option value="1">Líder</option>
+      <option value="10">Para Conhecimentor</option>
+      <option value="11">Participante</option>
+    </select>
+    <br><br>
+    <select class="selectpicker" multiple>
+      <option value="1">Líder</option>
+      <option value="10">Para Conhecimentor</option>
+      <option value="11">Participante</option>
+    </select>
