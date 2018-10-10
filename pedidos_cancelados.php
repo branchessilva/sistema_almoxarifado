@@ -42,21 +42,14 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     
+<!-- BOOTSTRAP PARA COLOCAR FILTRO NA TABELA E MUDAR A LETRA -->    
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.quicksearch/2.3.1/jquery.quicksearch.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     
-    
-<script type="text/javascript">
-$(document).ready(function() {
-    $('#examples').dataTable( {
-        "aaSorting": [[ 1, "desc" ]],
-		"aLengthMenu": [[10,25,50,100,-1], [10,25,50,100,"Todos"]]
-    });
-});
-</script>  
-    
-    
-    
-    
-    
+<!-- TABELA LEANDRO -->   
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script> 
 </head>
 
 	<body>
@@ -81,7 +74,7 @@ $(document).ready(function() {
 					<div> 
                         <div class="table-responsive">
                               <legend align="center"> <font size='5' color='000'> PEDIDOS CANCELADOS </font> </legend> <br><br>
-							  <table name="itensPedido" id="examples" class="table table-striped" align="center">
+							  <table name="itensPedido" id="tabela" class="table table-striped" align="center">
 								  <thead>
 									<tr>
                                       <th scope="col" ><font size="3"><center>CÓDIGO</center></font></th>

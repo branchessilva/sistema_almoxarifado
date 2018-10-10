@@ -31,26 +31,19 @@
 <!-- Usando jquery para os campos dinamicos de add itens-->
 <script src="jquery-1.11.3.js" type="text/javascript"></script> 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-		<script type="text/javascript" src="js/jquery.dataTables.min.js"></script>    
+    
+<!-- TABELA LEANDRO -->   
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
+ <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script> 
+    
 <!-- BOOtstrap -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     
-    
-    
-<script type="text/javascript">
-$(document).ready(function() {
-    $('#examples').dataTable( {
-        "aaSorting": [[ 1, "desc" ]],
-		"aLengthMenu": [[10,25,50,100,-1], [10,25,50,100,"Todos"]]
-    });
-});
-</script>  
-    
-    
-    
-    
-    
+<!-- BOOTSTRAP PARA COLOCAR FILTRO NA TABELA E MUDAR A LETRA -->    
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.quicksearch/2.3.1/jquery.quicksearch.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">       
 </head>
 
 	<body>
@@ -75,7 +68,12 @@ $(document).ready(function() {
 					<div> 
                         <div class="table-responsive">
                               <legend align="center"> <font size='5' color='000'> PEDIDOS REALIZADOS </font> </legend> <br><br>
-							  <table name="itensPedido" id="examples" class="table table-striped" align="center">
+                                <!--FILTRO PARA TABELA-->
+                                      <!--div class="form-group input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+                                            <input name="consulta" id="txt_consulta" placeholder="Consultar" type="text" class="form-control">
+                                        </div-->
+							  <table name="itensPedido" id="tabela" class="table table-striped" align="center">
 								  <thead>
 									<tr>
                                       <th scope="col" ><font size="3"><center>CÓDIGO</center></font></th>

@@ -108,10 +108,12 @@
 
       /*Remove o campo quando o usuário for editar*/
         $(document).ready(function(){
-            $('#div_pedidos').on("click",".remover_campo",function(e) {
+            $('#lista_itens_editar').on("click",".remover_campo",function(e) {
                     e.preventDefault();
                     $(this).parent('div').remove();
             });
+            
+            $('input#txt_consulta').quicksearch('table#tabela tbody tr');
             
             //Pega o id do item na tabela
             $(".btn_idPedido").on('click', function(){
@@ -133,6 +135,14 @@
                     window.location = "editar_Pedido_Criado.php?Pedido="+idPedido;
 
             });
+            
+            //FILTRO DA TABELA
+            $(document).ready(function() {
+                $('#tabela').dataTable( {
+                    "aLengthMenu": [[10,25,50,100,-1], [10,25,50,100,"Todos"]]
+                });
+            });
+
       });
        
 		/*função que pega os dados do BD e exibe no campo dinâmico*/
@@ -187,10 +197,3 @@
 				}
 			});
 		}
-        
-        //Função que remove um item já escolhido do select
-        function retiraOption(selec)
-        {
-            $("#itens option[value='selec']").remove();
-            //document.getElementsByName("itens[]").remove(selec.selectedIndex);
-        }

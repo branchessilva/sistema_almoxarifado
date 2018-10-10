@@ -50,6 +50,11 @@
 <!-- BOOtstrap -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+<!-- BOOTSTRAP PARA COLOCAR FILTRO NA TABELA E MUDAR A LETRA -->    
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.quicksearch/2.3.1/jquery.quicksearch.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 
 <body>
@@ -68,7 +73,10 @@
 		  <div class="box">
 			     <div class="pgContato">  
                         <div class="table-responsive">
-                                <legend align="center"><font size='5' color='#FFFFFF'>  Editar Solicitação de Material Pendente</font> </legend></br> </br>
+                                    <center>
+                                <font size='5' color='#FFFFFF'> 
+                                EDITAR SOLICITAÇÃO DE MATERIAL PENDENTE
+                                </font></center></br> </br>
                 				<div class="divFormulario">  
                                     <div class="formPedido">  
                                       <form id="formPedido" action="lista_itens_pendentes.php" method="POST">
@@ -81,6 +89,7 @@
                                           <p>
                                                 <font size="4" color="#FFFFFF">Itens do pedido:</font>
                                           </p>
+                                        <div id="lista_itens_editar">
                                         <?php 
 										while($dados = mysql_fetch_assoc($connect_itens_pedido)) { ?>
                                             <div id="div_pedidos">
@@ -89,6 +98,7 @@
                                                 </select><input type="text" required="required" name="quantidade[]" onkeypress="return SomenteNumero()" value="<?php echo $dados['quantidade_Solicitada'];?>"><a href="#" class="remover_campo text-danger" >Remover</a>
                                             </div>   
                                         <?php }?>
+                                        </div>
                                          <div id="lista_itens">								
 							             </div>
                                           <br><div>

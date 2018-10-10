@@ -31,6 +31,15 @@
 <!-- BOOtstrap -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+<!-- BOOTSTRAP PARA COLOCAR FILTRO NA TABELA E MUDAR A LETRA -->    
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.quicksearch/2.3.1/jquery.quicksearch.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    
+<!-- TABELA LEANDRO -->   
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
 </head>
 
 <body>
@@ -52,13 +61,13 @@
                         <div class="table-responsive">
                             <form action="seleciona_Pagina.php" method="POST">
                                 <legend align="center"> <font size='5'> Solicitação de Material </font> </legend></br> </br>
-                                      <table name="itensPedido" class="table table-striped" align="center">
+                                      <table name="itensPedido" id="tabela" class="table table-striped" align="center">
                                               <thead bgcolor="#28549D">
                                                 <tr style="color: white;">
-                                                  <th scope="col"><font size="3"><center>Código</center></font></th>
-                                                  <th scope="col"><font size="3"><center>Especificação</center></font></th>
-                                                  <th scope="col"><font size="3"><center>Quantidade solicitada</center></font></th>
-                                                  <th scope="col"><font size="3"><center>Unidade</center></font></th>
+                                                  <th scope="col"><font size="3"><center>CÓDIGO</center></font></th>
+                                                  <th scope="col"><font size="3"><center>ESPECIFICAÇÃO</center></font></th>
+                                                  <th scope="col"><font size="3"><center>QUANTIDADE SOLICITADA</center></font></th>
+                                                  <th scope="col"><font size="3"><center>UNIDADE</center></font></th>
                                                 </tr>
                                               </thead>
                                               <tbody>
@@ -71,16 +80,29 @@
                                                         if(isset($_POST["itens"]) && isset($_POST["quantidade"])) {
                                                                 $i= 0;
                                                                 $j= 0;
+                                                                $aux = array();
                                                                 foreach($_POST["quantidade"] as $quant) {
                                                                     array_push($_SESSION['quantidade'], $quant);
                                                                     $quantidade[$i] = $quant;
                                                                     $i++;
                                                                 }
+                                                            
                                                                 foreach($_POST["itens"] as $item)
                                                                 {
                                                                     array_push($_SESSION['item'], $item);
                                                                     $produto[$j] = $item;
                                                                     $j++;
+                                                                }
+                                                                                                                    
+                                                                for( $cont=0; $cont <= $i; $cont++)
+                                                                {
+                                                                    for($contd= $cont + 1; $contd < $i; $contd++)
+                                                                    {
+                                                                        if($produto[$cont] == $produto[$contd])
+                                                                        {
+                                                                          echo"<script type='text/javascript'>alert('Por favor, não selecione dois ou mais itens iguais em um mesmo pedido! ');window.location.href='editar_Pedido.php';</script>";  
+                                                                        }
+                                                                    }
                                                                 }
                                                                 for( $x=0; $x < $i; $x++)
                                                                 {
@@ -96,13 +118,16 @@
                                                                       <td><font size="3"><center><?=utf8_encode($linha['unidade_Tipo'])?></center></font></td>
                                                                     </tr>
                                                             <?php } ?>
-                                                   <?php } ?>
+                                                   <?php } else{
+                                                          echo"<script type='text/javascript'>alert('Por favor, selecione ao menos 1 (UM) item para o pedido! ');window.location.href='editar_Pedido.php';</script>";  
+                                                        }?>
                                               </tbody>
                                       </table>
-<br>
-<button style="width: 150px; float:right;" type="submit" value="Confirmar"  name="BotaoSubmit" class="btn btn-primary btn-sm">Confirmar pedido</button>
-
-<button style="width: 150px; float:right;" type="submit" value="Editar"  name="BotaoSubmit" class="btn btn-primary btn-sm">Editar pedido</button>
+                                    <br>
+                                    <div id="div_botao">
+                                    <button style="float:right;" type="submit" value="Editar"  name="BotaoSubmit" class="btn btn-primary">Editar pedido</button>
+                                    <button style="float:right;" type="submit" value="Confirmar"  name="BotaoSubmit" class="btn btn-primary">Confirmar pedido</button>
+                                    </div>
                                 </form>
                             </div>
 					   </div>
