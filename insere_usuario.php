@@ -1,3 +1,17 @@
+<?php 
+	include "verifica.php";
+	require "verifica.php";
+	
+	include "connect_Fazer_Pedido.php";
+	require "connect_Fazer_Pedido.php";
+    
+    $nome = $_POST["nome"];
+    $matricula = $_POST["matricula"];
+    $perfil = $_POST["opc_perfil"];
+    $setor = $_POST["opc_setor"];
+
+?>	
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,19 +28,16 @@
 </head>
 <body>
 	<?php
-		include "connect_BD.php";
-		require "connect_BD.php";
-		
-		if(isset($_POST["campo"])) {
-			echo "Os campos que você adicionou são:<br><br>";
-			
-			// Faz loop pelo array dos campos:
-			foreach($_POST["campo"] as $campo) {
-				echo $campo."<br>";
-			}
-		}else{
-			echo "Você não adicionou dados em nenhum campo!";
-		}
+		$atualiza_usuario = "UPDATE usuario SET matricula = $matricula, nome = $nome, fk_Setor = $setor, fk_Perfil = $perfil WHERE matricula = $matricula";
+		$result = mysql_query($atualiza_usuario,$con);
+		if(!$result)
+		{
+			echo "<div class='alert alert-danger' role='alert'>Erro ao realizar pedido, você está sendo recirecionado!</div> ";
+					//echo "<meta http-equiv=refresh content='3;URL=login.php'>";
+		}else
+        {
+            echo"<script type='text/javascript'>alert('Pedido realizado com sucesso!');window.location.href='fazer_Pedido.php';</script>";
+        }
 
 	?> 
 </body>	

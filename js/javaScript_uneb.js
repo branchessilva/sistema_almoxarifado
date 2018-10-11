@@ -113,7 +113,8 @@
                     $(this).parent('div').remove();
             });
             
-            $('input#txt_consulta').quicksearch('table#tabela tbody tr');
+            //Para filtro da tabela
+            //$('input#txt_consulta').quicksearch('table#tabela tbody tr');
             
             //Pega o id do item na tabela
             $(".btn_idPedido").on('click', function(){

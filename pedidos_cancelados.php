@@ -6,7 +6,10 @@
 	require "connect_BD.php";
 	$matricula = $_SESSION["matricula"];
 
-	$contulta_pedido_cancelado = "SELECT P.cod_pedido, P.data_Pedido, P.hora, E.nome, E.cod_estado FROM pedido as P INNER JOIN estado as E ON (P.solicitante = $matricula AND P.fk_Estado = E.cod_Estado) WHERE E.cod_estado=4 ORDER BY P.data_Pedido DESC";
+    $consulta_motivo = "SELECT PC.motivo FROM pedido as P INNER JOIN pedido_cancelado AS PC ON (P.fk_pedido_cancelado = PC.cod_pedido_cancelado)";
+    //$connect_pedido_cancelado = mysql_query($consulta_motivo, $con) or die(mysql_query());
+
+	$contulta_pedido_cancelado = "SELECT P.cod_pedido, P.data_Pedido, P.hora, E.nome, E.cod_estado FROM pedido as P INNER JOIN estado as E ON (P.solicitante = $matricula AND P.fk_Estado = E.cod_Estado) WHERE (E.cod_estado=4 OR E.cod_estado=3) ORDER BY P.data_Pedido DESC";
 
 	$connect_pedido = mysql_query($contulta_pedido_cancelado, $con) or die(mysql_query());
     $total = mysql_num_rows($connect_pedido); // Total de itens retornados
@@ -58,10 +61,11 @@
           <a href="#home" class="active"><font size="3">HOME</font></a>
           <a href="acompanhar_Pedido.php"><font size="3">ACOMPANHAR PEDIDO</font></a>
           <a href="fazer_Pedido.php"><font size="3">FAZER PEDIDO</font></a>
+          <a href="pedidos_cancelados.php"><font size="3">PEDIDOS CANCELADOS</font></a>
           <a href="login.php"><font size="3">SAIR</font></a>
           <a href="javascript:void(0);" class="icon" onclick="cria_Botao_NavBar();">
-            <i class="fa fa-bars"></i>
-	       </a>
+           <i class="fa fa-bars"></i>
+	      </a>
 	</div>
 		
 		<!-- Link para tabela e php: https://pt.stackoverflow.com/questions/38845/popular-tabela-com-dados-tabela-html ou
@@ -80,6 +84,7 @@
                                       <th scope="col" ><font size="3"><center>CÓDIGO</center></font></th>
 									  <th scope="col"><font size="3"><center>ESTADO DO PEDIDO</center></font></th>
 									  <th scope="col"><font size="3"><center>DATA E HORA DO PEDIDO REALIZADO</center></font></th>
+                                      <th scope="col"><font size="3"><center>MOTIVO CANCELAMENTO</center></font></th>
                                       <th scope="col"><font size="3"><center>Ações</center></font></th>
 									</tr>
 								  </thead>
@@ -95,6 +100,9 @@
                                                 <td style="width:10px" class="idItem"><font size="3"><center><?=$dado['cod_pedido']?></center></font></td>
                                                  <td style="width:50px"><font size="3"><center><?=$botao?></center></font></td>
                                                  <td style="width:200px"><font size="3"><center><?=date('d/m/Y',strtotime($dado['data_Pedido']))?> ás <?=$dado['hora']?></center></font></td>
+                                                <!--?php while($dados = mysql_fetch_assoc($connect_pedido_cancelado)) {?>
+                                                    <td style="width:200px"><font size="3"><center><!--?=$dados['motivo']?></center></font></td-->
+                                                <!--?php } ?-->
                                                   <td style="width:200px">
                                                          <center>   
                                                              <button type="button" id="<?=$dado['cod_pedido']?>" class="btn_idPedido btn btn-primary"><font size='3'>Visualizar itens</font></button>

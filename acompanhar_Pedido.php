@@ -6,7 +6,7 @@
 	require "connect_BD.php";
 	$condicaoData = date('Y-m-d');
 	$matricula = $_SESSION["matricula"];
-	$contulta_pedido = "SELECT P.cod_pedido, P.data_Pedido, P.hora, E.nome, E.cod_estado FROM pedido as P INNER JOIN estado as E ON (P.solicitante = $matricula AND P.fk_Estado = E.cod_Estado) WHERE E.cod_estado!=4 ORDER BY P.data_hora ASC";
+	$contulta_pedido = "SELECT P.cod_pedido, P.data_Pedido, P.hora, E.nome, E.cod_estado FROM pedido as P INNER JOIN estado as E ON (P.solicitante = $matricula AND P.fk_Estado = E.cod_Estado) WHERE (E.cod_estado!=4 AND E.cod_estado!=3) ORDER BY P.data_hora ASC";
 	$connect_pedido = mysql_query($contulta_pedido, $con) or die(mysql_query());
 ?>
 <!DOCTYPE html>
@@ -50,12 +50,13 @@
 
 	<div class="topnav " id="myTopnav">
           <a href="#home" class="active"><font size="3">HOME</font></a>
+          <a href="acompanhar_Pedido.php"><font size="3">ACOMPANHAR PEDIDO</font></a>
           <a href="fazer_Pedido.php"><font size="3">FAZER PEDIDO</font></a>
-          <a href="pedidos_cancelados.php"><font size="3">PEDIDOS QUE CANCELEI</font></a>
+          <a href="pedidos_cancelados.php"><font size="3">PEDIDOS CANCELADOS</font></a>
           <a href="login.php"><font size="3">SAIR</font></a>
           <a href="javascript:void(0);" class="icon" onclick="cria_Botao_NavBar();">
-            <i class="fa fa-bars"></i>
-	       </a>
+           <i class="fa fa-bars"></i>
+	      </a>
 	</div>
 		
 		<!-- Link para tabela e php: https://pt.stackoverflow.com/questions/38845/popular-tabela-com-dados-tabela-html ou

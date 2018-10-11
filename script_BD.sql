@@ -23,6 +23,11 @@ create table usuario(
     constraint fk_perfil foreign key (fk_Perfil) references perfil (cod_perfil)
 );
 
+CREATE TABLE pedido_cancelado
+(   cod_pedido_cancelado int primary key not null auto_increment,
+    motivo char(200) not null
+);
+
 create table pedido(
 	cod_pedido int primary key not null auto_increment,
 	recebedor int,

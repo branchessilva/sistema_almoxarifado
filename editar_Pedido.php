@@ -41,12 +41,13 @@
 
 	<div class="topnav " id="myTopnav">
           <a href="#home" class="active"><font size="3">HOME</font></a>
-          <a href="fazer_Pedido.php"><font size="3">FAZER PEDIDO</font></a>
           <a href="acompanhar_Pedido.php"><font size="3">ACOMPANHAR PEDIDO</font></a>
+          <a href="fazer_Pedido.php"><font size="3">FAZER PEDIDO</font></a>
+          <a href="pedidos_cancelados.php"><font size="3">PEDIDOS CANCELADOS</font></a>
           <a href="login.php"><font size="3">SAIR</font></a>
           <a href="javascript:void(0);" class="icon" onclick="cria_Botao_NavBar();">
-            <i class="fa fa-bars"></i>
-	       </a>
+           <i class="fa fa-bars"></i>
+	      </a>
 	</div>
 
 	<div class="container">

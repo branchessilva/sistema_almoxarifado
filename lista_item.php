@@ -46,11 +46,13 @@
 
 	<div class="topnav " id="myTopnav">
           <a href="#home" class="active"><font size="3">HOME</font></a>
-          <a href="acompanhar_Pedido.php"><font size="3">ACOMPANHAR PEDIDOS</font></a>
+          <a href="acompanhar_Pedido.php"><font size="3">ACOMPANHAR PEDIDO</font></a>
+          <a href="fazer_Pedido.php"><font size="3">FAZER PEDIDO</font></a>
+          <a href="pedidos_cancelados.php"><font size="3">PEDIDOS CANCELADOS</font></a>
           <a href="login.php"><font size="3">SAIR</font></a>
           <a href="javascript:void(0);" class="icon" onclick="cria_Botao_NavBar();">
-            <i class="fa fa-bars"></i>
-	       </a>
+           <i class="fa fa-bars"></i>
+	      </a>
 	</div>
 
 	<div class="containerTable">
@@ -125,8 +127,8 @@
                                       </table>
                                     <br>
                                     <div id="div_botao">
-                                    <button style="float:right;" type="submit" value="Editar"  name="BotaoSubmit" class="btn btn-primary">Editar pedido</button>
-                                    <button style="float:right;" type="submit" value="Confirmar"  name="BotaoSubmit" class="btn btn-primary">Confirmar pedido</button>
+                                    <button type="submit" value="Editar"  name="BotaoSubmit" class="btn btn-primary">Editar pedido</button>
+                                    <button type="submit" value="Confirmar"  name="BotaoSubmit" class="btn btn-primary">Confirmar pedido</button>
                                     </div>
                                 </form>
                             </div>

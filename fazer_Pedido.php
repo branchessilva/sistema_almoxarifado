@@ -69,7 +69,7 @@
 								<?php 
 										while($dado = mysql_fetch_assoc($connect_setor)) { ?>
                                             <font size="4" color="#FFFFFF">Unidade requisitante:</font>
-                                            <input disabled type="text" name="nome" value="<?php echo $dado['nome'];?>"/>
+                                             <input disabled type="text" name="nome" value="<?php echo $dado['nome'];?>"/>
                                             <input hidden type="text" name="nome" value="<?php echo $dado['nome'];?>"/>
 								<?php } ?>
 							</div>
@@ -88,10 +88,10 @@
 							</div >	
                             <div id="lista_itens">								
 							</div>
-                            <div id="div_botao">
+                            <div id="">
+								<button type="submit" id="BotaoSubmit" class="btn btn-primary">Concluir pedido</button>
                                 <button type="button" id="add_item" onclick="carregarItens()" class="btn btn-primary">Adicionar itens</button>
                             <!--input type="button" id="add_item" onclick="carregarItens()" value="Adicionar Item"-->
-								<button type="submit" id="BotaoSubmit" class="btn btn-primary">Concluir pedido</button>
 							</div>
                         </form>
 					</div>

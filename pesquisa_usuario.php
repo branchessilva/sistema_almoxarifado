@@ -1,8 +1,3 @@
-<?php 
-	session_start();
-    session_destroy();
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,21 +23,19 @@
 </head>
 <body>
 <div class="login-form">
-	<h2 class="text-center">Login</h2>
-    <form name="formulario" action="validar_login.php" method="POST">
+	<h2 class="text-center">Buscar usuário</h2>
+    <form name="formulario" action="editar_usuario.php" method="POST">
 		<div class="avatar">
-			<img src="./Imagens/avatar.png" alt="Avatar">
+			<img src="Imagens/avatar.png" alt="Avatar">
 		</div>           
-		 <div class="form-group">
-        	<input type="text" name="matricula" class="form-control input-lg" id="matricula"  maxlength="20" placeholder="Usuario" required="required">
-        </div>
-		<div class="form-group">
-            <input type="password" class="form-control input-lg" name="password" maxlength="25" placeholder="Senha" required="required">
-        </div>        
         <div class="form-group">
-            <button type="submit" id="BotaoSubmit" class="btn btn-primary btn-lg btn-block login-btn">Acessar</button>
+        	<input type="text" name="usuario" class="form-control input-lg" id="usuario" placeholder="Usuário" onblur="valida_Nome()" required="required">
+        </div>
+      
+        <div class="form-group">
+            <button type="submit" id="BotaoSubmit" class="btn btn-primary btn-lg btn-block login-btn">Pesquisar</button>
         </div>
     </form>
 </div>
 </body>
-</html>                            
+</html>      
