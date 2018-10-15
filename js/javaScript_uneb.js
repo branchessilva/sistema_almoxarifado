@@ -106,8 +106,9 @@
 			});
 		}
 
-      /*Remove o campo quando o usuário for editar*/
+
         $(document).ready(function(){
+            /*Remove o campo quando o usuário for editar*/
             $('#lista_itens_editar').on("click",".remover_campo",function(e) {
                     e.preventDefault();
                     $(this).parent('div').remove();
@@ -126,23 +127,30 @@
             $(".btn_CancelaPedido").on('click', function(){
                 var idPedido = ($(this).attr('id'));
                 if (confirm('Tem certeza que quer cancelar o pedido?')){ 
-                    window.location = "cancela_pedido.php?Pedido="+idPedido;
+                    window.location = "justifica_cancelamento.php?Pedido="+idPedido;
                 }
 
             });
+            
+            /*usado na tabela do autorizador para pegar o id do pedido clicado*/
+            $(".btn_EditarPedidoAutorizador").on('click', function(){
+                var idPedido = ($(this).attr('id'));
+                window.location = "../AUTORIZADO/editar_Pedido_Criado_Autorizador.php?Pedido="+idPedido;
+            });
+            
             //Pega o id do item na tabela
             $(".btn_EditarPedido").on('click', function(){
                 var idPedido = ($(this).attr('id'));
-                    window.location = "editar_Pedido_Criado.php?Pedido="+idPedido;
+                window.location = "editar_Pedido_Criado.php?Pedido="+idPedido;
 
             });
             
             //FILTRO DA TABELA
-            $(document).ready(function() {
+            //$(document).ready(function() {
                 $('#tabela').dataTable( {
                     "aLengthMenu": [[10,25,50,100,-1], [10,25,50,100,"Todos"]]
                 });
-            });
+            //});
 
       });
        
@@ -154,7 +162,7 @@
 			$.ajax({
 				type: 'POST',
                 dataType: 'json',
-                url: 'carregaBD.php',
+                url: '../carregaBD.php',
                 async: true,
 				error: function (jqXHR, exception) {
 					var msg = '';

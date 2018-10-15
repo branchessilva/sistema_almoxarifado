@@ -150,10 +150,12 @@
      -moz-border-radius: 5px;  
      -webkit-border-radius: 5px;  
      border-radius: 5px;  
-     height: 200px;  
-     margin-bottom: 20px;  
+     height: 100px;  
+     margin-bottom: 5px;  
+     margin-top: 5px; 
      border-bottom: 1px solid #ccc;  
-     border-left: 1px solid #ccc; 
+     border-left: 1px solid #ccc;
+     border-color:#28549D;
 	}
 	 
 	.pgContato select {  

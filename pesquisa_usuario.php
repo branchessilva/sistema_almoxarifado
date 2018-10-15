@@ -26,7 +26,7 @@
 	<h2 class="text-center">Buscar usuário</h2>
     <form name="formulario" action="editar_usuario.php" method="POST">
 		<div class="avatar">
-			<img src="Imagens/avatar.png" alt="Avatar">
+			<img src="../Imagens/avatar.png" alt="Avatar">
 		</div>           
         <div class="form-group">
         	<input type="text" name="usuario" class="form-control input-lg" id="usuario" placeholder="Usuário" onblur="valida_Nome()" required="required">

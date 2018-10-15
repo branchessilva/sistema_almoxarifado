@@ -32,12 +32,15 @@
 			
 			if($dado['cod_perfil'] == AUTORIZADO)
 			{
+                session_start();
+				$_SESSION["matricula"] = $_POST["matricula"];
+				header('Location: ./AUTORIZADO/acompanhar_Pedido_Autorizador.php');
 			}else if($dado['cod_perfil'] == COMUM)
 			{
 				session_start();
 				$_SESSION["matricula"] = $_POST["matricula"];
 				echo $_SESSION["matricula"];
-				header('Location: fazer_Pedido.php');
+				header('Location: ./COMUM/fazer_Pedido.php');
 			}else if($dado['cod_perfil'] == ALMOXARIFADO)
 			{
 			}
