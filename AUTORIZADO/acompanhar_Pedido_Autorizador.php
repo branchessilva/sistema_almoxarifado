@@ -4,13 +4,17 @@
 	
 	include "../connect_BD.php";
 	require "../connect_BD.php";
+
 	$condicaoData = date('Y-m-d');
 	$matricula = $_SESSION["matricula"];
     $consulta_setor = "SELECT fk_Setor FROM usuario WHERE matricula = $matricula";
     $connect_setor = mysql_query($consulta_setor, $con) or die(mysql_query());
     $linha = mysql_fetch_assoc($connect_setor);
-    echo $linha['fk_Setor'];
-	$contulta_pedido = "SELECT P.cod_pedido, P.data_Pedido, P.hora, E.nome, E.cod_estado FROM pedido as P INNER JOIN estado as E ON (P.solicitante = $matricula AND P.fk_Estado = E.cod_Estado) WHERE (E.cod_estado!=4 AND E.cod_estado!=3) ORDER BY P.data_hora ASC";
+    $setor = $linha['fk_Setor'];
+
+	$contulta_pedido = "SELECT P.cod_pedido, P.data_Pedido, P.hora, E.nome FROM pedido AS P INNER JOIN usuario AS U ON P.solicitante = U.matricula and U.fk_Setor=$setor INNER JOIN estado as E ON P.fk_Estado = E.cod_Estado WHERE (E.cod_estado!=4 AND E.cod_estado!=3)";
+    
+	//$contulta_pedido = "SELECT P.cod_pedido, P.data_Pedido, P.hora, E.nome, E.cod_estado FROM pedido as P INNER JOIN estado as E ON (P.solicitante = $matricula AND P.fk_Estado = E.cod_Estado) WHERE (E.cod_estado!=4 AND E.cod_estado!=3) ORDER BY P.data_hora ASC";
 	$connect_pedido = mysql_query($contulta_pedido, $con) or die(mysql_query());
 ?>
 <!DOCTYPE html>
@@ -112,7 +116,7 @@
                                                  <td style="width:200px"><font size="3"><center><?=date('d/m/Y',strtotime($dado['data_Pedido']))?> ás <?=$dado['hora']?></center></font></td>
                                                   <td style="width:300px">
                                                          <center>   
-                                                             <button type="button" id="<?=$dado['cod_pedido']?>" class="btn_idPedido btn btn-primary"><font size='3'>Visualizar itens</font></button>
+                                                             <button type="button" id="<?=$dado['cod_pedido']?>" class="btn_idPedido_Autorizador btn btn-primary"><font size='3'>Visualizar itens</font></button>
                                                                 <?php 
                                                                     if($estado!="Aprovado" && $estado!="Cancelado")
                                                                     {?>

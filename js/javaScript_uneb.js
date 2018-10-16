@@ -117,13 +117,21 @@
             //Para filtro da tabela
             //$('input#txt_consulta').quicksearch('table#tabela tbody tr');
             
-            //Pega o id do item na tabela
+            //Pega o id do item na tabela do usuario comum
             $(".btn_idPedido").on('click', function(){
                 var idPedido = ($(this).attr('id'));
                 window.location = "exibe_itens.php?Pedido="+idPedido;
 
             });
-             //Pega o id do item na tabela
+            
+             //Pega o id do item na tabela do usuario autorizador
+            $(".btn_idPedido_Autorizador").on('click', function(){
+                var idPedido = ($(this).attr('id'));
+                window.location = "exibe_itens_Autorizador.php?Pedido="+idPedido;
+
+            });
+            
+             //Pega o id do item na tabela usario 
             $(".btn_CancelaPedido").on('click', function(){
                 var idPedido = ($(this).attr('id'));
                 if (confirm('Tem certeza que quer cancelar o pedido?')){ 

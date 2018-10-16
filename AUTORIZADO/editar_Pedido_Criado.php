@@ -1,9 +1,9 @@
 <?php 
-	include "../verifica.php";
-	require "../verifica.php";
+	include "verifica.php";
+	require "verifica.php";
 	
-	include "../connect_BD.php";
-	require "../connect_BD.php";
+	include "connect_BD.php";
+	require "connect_BD.php";
 
     /*Pega o codigo do pedido da tabela correspondente a linha clicada*/
     $PegaPedido = $_GET['Pedido'];
@@ -22,7 +22,7 @@
     
     if($total == 0)
     {
-         echo"<script type='text/javascript'>alert('Sem itens cadastrados nesse pedido!');window.location.href='acompanhar_Pedido_Autorizador.php';</script>";
+         echo"<script type='text/javascript'>alert('Sem itens cadastrados nesse pedido!');window.location.href='acompanhar_Pedido.php';</script>";
     }
 ?>	
 <!DOCTYPE html>
@@ -61,7 +61,7 @@
 
 	<div class="topnav " id="myTopnav">
           <a href="#home" class="active"><font size="3">HOME</font></a>
-          <a href="acompanhar_Pedido_Autorizador.php"><font size="3">ACOMPANHAR PEDIDO</font></a>
+          <a href="acompanhar_Pedido.php"><font size="3">ACOMPANHAR PEDIDO</font></a>
           <a href="fazer_Pedido.php"><font size="3">FAZER PEDIDO</font></a>
           <a href="pedidos_cancelados.php"><font size="3">PEDIDOS CANCELADOS</font></a>
           <a href="../login.php"><font size="3">SAIR</font></a>
