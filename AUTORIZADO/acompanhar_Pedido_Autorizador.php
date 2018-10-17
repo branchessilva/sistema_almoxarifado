@@ -59,9 +59,9 @@
 	<div class="topnav " id="myTopnav">
           <a href="#home" class="active"><font size="3">HOME</font></a>
           <a href="acompanhar_Pedido_Autorizador.php"><font size="3">ACOMPANHAR PEDIDO</font></a>
-          <a href="fazer_Pedido.php"><font size="3">FAZER PEDIDO</font></a>
-          <a href="pedidos_cancelados.php"><font size="3">PEDIDOS CANCELADOS</font></a>
-          <a href="login.php"><font size="3">SAIR</font></a>
+          <a href="fazer_Pedido_Autorizador.php"><font size="3">FAZER PEDIDO</font></a>
+          <a href="pedidos_cancelados_Autorizador.php"><font size="3">PEDIDOS CANCELADOS</font></a>
+          <a href="../login.php"><font size="3">SAIR</font></a>
           <a href="javascript:void(0);" class="icon" onclick="cria_Botao_NavBar();">
            <i class="fa fa-bars"></i>
 	      </a>
@@ -105,6 +105,9 @@
 													case "Aprovado":
 														$botao="<button type='button' class='btn btn-success'><font size='3'>Aguardando retirada</font></button>";
 														break;
+													case "Enviado ao Almoxarifado":
+														$botao="<button type='button' class='btn btn-info'><font size='3'>Enviado ao almoxarifado</font></button>";
+														break;
 													default:
 														$botao="<button type='button' class='btn btn-warning'><font size='3'>Aguardando análise</font></button>";
 														break;
@@ -114,14 +117,15 @@
                                                 <td style="width:10px" class="idItem"><font size="3"><center><?=$dado['cod_pedido']?></center></font></td>
                                                  <td style="width:50px"><font size="3"><center><?=$botao?></center></font></td>
                                                  <td style="width:200px"><font size="3"><center><?=date('d/m/Y',strtotime($dado['data_Pedido']))?> ás <?=$dado['hora']?></center></font></td>
-                                                  <td style="width:300px">
+                                                  <td style="width:400px">
                                                          <center>   
                                                              <button type="button" id="<?=$dado['cod_pedido']?>" class="btn_idPedido_Autorizador btn btn-primary"><font size='3'>Visualizar itens</font></button>
                                                                 <?php 
                                                                     if($estado!="Aprovado" && $estado!="Cancelado")
                                                                     {?>
-                                                                        <button type="button" id="<?=$dado['cod_pedido']?>" class="btn_CancelaPedido btn btn-primary"><font size='3'>Cancelar pedido</font></button>
                                                                         <button type="button" id="<?=$dado['cod_pedido']?>" class="btn_EditarPedidoAutorizador btn btn-primary"><font size='3'>Editar pedido</font></button>
+                                                                        <button type="button" id="<?=$dado['cod_pedido']?>" class="btn_CancelaPedido btn btn-danger"><font size='3'>Cancelar pedido</font></button>
+                                                                        <button type="button" id="<?=$dado['cod_pedido']?>" class="btn_AprovarPedidoAutorizador btn btn-success"><font size='3'>Aprovar pedido</font></button>
                                                               <?php } ?>
                                                           </center>
                                                   </td>

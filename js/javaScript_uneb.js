@@ -146,6 +146,14 @@
                 window.location = "../AUTORIZADO/editar_Pedido_Criado_Autorizador.php?Pedido="+idPedido;
             });
             
+            /*Aprova um pedido pendenete*/
+            $(".btn_AprovarPedidoAutorizador").on('click', function(){
+                var idPedido = ($(this).attr('id'));
+               if (confirm('Tem certeza que quer aprovar o pedido?')){ 
+                    window.location = "aprova_pedido.php?Pedido="+idPedido;
+                }
+            });
+            
             //Pega o id do item na tabela
             $(".btn_EditarPedido").on('click', function(){
                 var idPedido = ($(this).attr('id'));

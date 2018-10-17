@@ -7,7 +7,7 @@
     /*Pega o codigo do pedido da tabela correspondente a linha clicada*/
     $PegaPedido = $_SESSION["num_pedido"];
     $justificativa = $_POST["justificativa"];
-    echo $justificativa;
+    //echo $justificativa;
     
     $insere_justificativa = "INSERT INTO pedido_cancelado (motivo) VALUES ('$justificativa')";
     mysql_query($insere_justificativa, $con) or die(mysql_error());
