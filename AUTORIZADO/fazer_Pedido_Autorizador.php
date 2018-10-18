@@ -42,33 +42,18 @@
 <!-- BOOTSTRAP PARA COLOCAR FILTRO NA TABELA E MUDAR A LETRA -->    
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.quicksearch/2.3.1/jquery.quicksearch.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="/resources/demos/style.css">
-  <style>
-  .custom-combobox {
-    position: relative;
-    display: inline-block;
-  }
-  .custom-combobox-toggle {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    margin-left: -1px;
-    padding: 0;
-  }
-  .custom-combobox-input {
-    margin: 0;
-    padding: 5px 10px;
-  }
-  </style>
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+</style>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script>
   $( function() {
     $.widget( "custom.combobox", {
       _create: function() {
         this.wrapper = $( "<span>" )
-          .addClass( "custom-combobox" )
+          .addClass( "custom-.combobox" )
           .insertAfter( this.element );
  
         this.element.hide();
@@ -80,11 +65,11 @@
         var selected = this.element.children( ":selected" ),
           value = selected.val() ? selected.text() : "";
  
-        this.input = $( "<input style='width:300px'>" )
+        this.input = $( "<input>" )
           .appendTo( this.wrapper )
           .val( value )
           .attr( "title", "" )
-          .addClass( "custom-combobox-input ui-widget ui-widget-content ui-state-default ui-corner-left" )
+          .addClass( "custom-.combobox-input ui-widget ui-widget-content ui-state-default ui-corner-left" )
           .autocomplete({
             delay: 0,
             minLength: 0,
@@ -124,7 +109,7 @@
             text: false
           })
           .removeClass( "ui-corner-all" )
-          .addClass( "custom-combobox-toggle ui-corner-right" )
+          .addClass( "custom-.combobox-toggle ui-corner-right" )
           .on( "mousedown", function() {
             wasOpen = input.autocomplete( "widget" ).is( ":visible" );
           })
@@ -195,9 +180,9 @@
       }
     });
  
-    $( "#combobox" ).combobox();
-    $( "#toggle" ).on( "click", function() {
-      $( "#combobox" ).toggle();
+    $( ".combobox" ).combobox();
+    $( ".toggle" ).on( "click", function() {
+      $( ".combobox" ).toggle();
     });
   } );
   </script>
@@ -238,13 +223,15 @@
 								<font size="4" color="#FFFFFF">Itens do pedido:</font>
 							</p>
 							<div id="div_pedidos" >
-									<select name="itens[]" id="combobox" required>
+									<select name="itens[]" class="combobox" required>
 										<option value="">Selecione um item</option> 
 										<?php 
 										while($dado2 = mysql_fetch_assoc($connect_itens)) { ?>
 											<option value="<?=$dado2['cod_item']?>"><?=utf8_encode($dado2['nome'])?>&nbsp;- &nbsp;<?=$dado2['unidade_Tipo']?></option>
 										<?php } ?>
-									</select><input type="text" required="required" placeholder="Quantidade" name="quantidade[]" onkeypress="return SomenteNumero()">
+									</select>
+                                
+                                <input type="text" style="margin: 0 90px;" required="required" placeholder="Quantidade" name="quantidade[]" onkeypress="return SomenteNumero()">
 							</div >	
                             <div id="lista_itens">								
 							</div>

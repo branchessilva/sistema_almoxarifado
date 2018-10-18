@@ -59,9 +59,9 @@
 
 	<div class="topnav " id="myTopnav">
           <a href="#home" class="active"><font size="3">HOME</font></a>
-          <a href="acompanhar_Pedido.php"><font size="3">ACOMPANHAR PEDIDO</font></a>
-          <a href="fazer_Pedido.php"><font size="3">FAZER PEDIDO</font></a>
-          <a href="pedidos_cancelados.php"><font size="3">PEDIDOS CANCELADOS</font></a>
+          <a href="acompanhar_Pedido_Autorizador.php"><font size="3">ACOMPANHAR PEDIDO</font></a>
+          <a href="fazer_Pedido_Autorizador.php"><font size="3">FAZER PEDIDO</font></a>
+          <a href="pedidos_cancelados_Autorizador.php"><font size="3">PEDIDOS CANCELADOS</font></a>
           <a href="../login.php"><font size="3">SAIR</font></a>
           <a href="javascript:void(0);" class="icon" onclick="cria_Botao_NavBar();">
            <i class="fa fa-bars"></i>
@@ -77,7 +77,7 @@
 				<div class="">  
 					<div> 
                         <div class="table-responsive">
-                              <legend align="center"> <font size='5' color='000'> ITENS DO PEDIDO REALIZADO EM: <?=  date('d/m/Y',strtotime($linha['data_Pedido']));?> </font> </legend> <br><br>
+                              <legend align="center"> <font size='5' color='000'> ITENS DO PEDIDO <?=$PegaPedido?> REALIZADO EM: <?=  date('d/m/Y',strtotime($linha['data_Pedido']));?> </font> </legend> <br><br>
 							  <table name="itensPedido" id="tabela" class="table table-striped" align="center">
 								  <thead>
 									<tr>
