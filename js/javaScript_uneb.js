@@ -204,7 +204,7 @@
 					{
 						$("h2").html(retorno[0].erro);
 					}else{
-						itens +="<div id='div_pedidos'>\<name='itens[]' class='combobox' required>\<option value=''>Selecione um item</option>";
+						itens +="<div id='div_pedidos'>\<select name='itens[]' class='combobox' required>\<option value=''>Selecione um item</option>";
 						//Laço para criar linhas da tabela
 						for(var i = 0; i<retorno.length; i++)
 						{

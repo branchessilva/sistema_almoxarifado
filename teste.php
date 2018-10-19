@@ -1,27 +1,24 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <!-- JavaScript -->
-<script type="text/javascript" src="../js/javaScript_uneb.js" /></script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>jQuery UI Autocomplete - Combobox</title>
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="/resources/demos/style.css">
   <style>
-  .custom-combobox {
+  .custom-.combobox {
     position: relative;
     display: inline-block;
-           background: #B22222; 
   }
-  .custom-combobox-toggle {
+  .custom-.combobox-toggle {
     position: absolute;
     top: 0;
     bottom: 0;
     margin-left: -1px;
     padding: 0;
   }
-  .custom-combobox-input {
+  .custom-.combobox-input {
     margin: 0;
     padding: 5px 10px;
   }
@@ -29,7 +26,7 @@
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script>
-  $( function() {
+$( function() {
     $.widget( "custom.combobox", {
       _create: function() {
         this.wrapper = $( "<span>" )
@@ -168,12 +165,8 @@
   </script>
 </head>
 <body>
-<button type="button" id="add_item" onclick="carregarItens()" class="btn btn-primary">Adicionar itens</button>
-                                <div id="lista_itens">								
-							</div>
+ 
 <div class="ui-widget">
-    
-    <div id="teste">
   <label>Your preferred programming language: </label>
   <select class="combobox">
     <option value="">Select one...</option>
@@ -200,37 +193,18 @@
     <option value="Scala">Scala</option>
     <option value="Scheme">Scheme</option>
   </select>
-            </div>
-
-  <select class="combobox">
-    <option value="">Select one...</option>
-    <option value="ActionScript">ActionScript</option>
-    <option value="AppleScript">AppleScript</option>
-    <option value="Asp">Asp</option>
-    <option value="COBOL">COBOL</option>
-    <option value="ColdFusion">ColdFusion</option>
-    <option value="Erlang">Erlang</option>
-    <option value="Fortran">Fortran</option>
-    <option value="Groovy">Groovy</option>
-    <option value="Haskell">Haskell</option>
-    <option value="Java">Java</option>
-    <option value="JavaScript">JavaScript</option>
-    <option value="Lisp">Lisp</option>
-    <option value="Perl">Perl</option>
-    <option value="PHP">PHP</option>
-    <option value="Python">Python</option>
-    <option value="Ruby">Ruby</option>
-    <option value="Scala">Scala</option>
-    <option value="Scheme">Scheme</option>
-  </select>
-
-        <div class="ui-widget">
+</div>
+    <div class="ui-widget">
   <label>Your preferred programming language: </label>
   <select class="combobox">
     <option value="">Select one...</option>
     <option value="ActionScript">ActionScript</option>
     <option value="AppleScript">AppleScript</option>
     <option value="Asp">Asp</option>
+    <option value="BASIC">BASIC</option>
+    <option value="C">C</option>
+    <option value="C++">C++</option>
+    <option value="Clojure">Clojure</option>
     <option value="COBOL">COBOL</option>
     <option value="ColdFusion">ColdFusion</option>
     <option value="Erlang">Erlang</option>
