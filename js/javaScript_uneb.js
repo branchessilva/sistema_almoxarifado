@@ -131,11 +131,18 @@
 
             });
             
+            //Pega o id do item na tabela do usuario almoxarifado
+            $(".btn_idPedido_Almoxarifado").on('click', function(){
+                var idPedido = ($(this).attr('id'));
+                window.location = "exibe_itens_Almoxarifado.php?Pedido="+idPedido;
+
+            });
+            
              //Pega o id do item na tabela usario 
             $(".btn_CancelaPedido").on('click', function(){
                 var idPedido = ($(this).attr('id'));
                 if (confirm('Tem certeza que quer cancelar o pedido?')){ 
-                    window.location = "justifica_cancelamento.php?Pedido="+idPedido;
+                    window.location = "../ALMOXARIFADO/justifica_cancelamento.php?Pedido="+idPedido;
                 }
 
             });
@@ -144,6 +151,12 @@
             $(".btn_EditarPedidoAutorizador").on('click', function(){
                 var idPedido = ($(this).attr('id'));
                 window.location = "../AUTORIZADO/editar_Pedido_Criado_Autorizador.php?Pedido="+idPedido;
+            });
+            
+             /*usado na tabela do ALMOXARIFADO para pegar o id do pedido clicado*/
+            $(".btn_EditarPedidoAlmoxarifado").on('click', function(){
+                var idPedido = ($(this).attr('id'));
+                window.location = "../ALMOXARIFADO/editar_Pedido_Criado_Almoxarifado.php?Pedido="+idPedido;
             });
             
             /*Aprova um pedido pendenete*/
