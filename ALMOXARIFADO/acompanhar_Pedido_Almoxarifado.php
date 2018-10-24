@@ -108,6 +108,9 @@
 													case "Enviado ao Almoxarifado":
 														$botao="<button type='button' class='btn btn-warning'><font size='3'>Aguardando análise</font></button>";
 														break;
+                                                    case "Retirado":
+                                                        $botao="<button type='button' class='btn btn-sample'><font size='3'>Pedido retirado</font></button>";
+														break;
 													default:
 														$botao="<button type='button' class='btn btn-warning'><font size='3'>Aguardando análise</font></button>";
 														break;
@@ -120,8 +123,13 @@
                                                   <td style="width:400px">
                                                          <center>   
                                                              <button type="button" id="<?=$dado['cod_pedido']?>" class="btn_idPedido_Almoxarifado btn btn-primary"><font size='3'>Visualizar itens</font></button>
+                                                             <?php 
+                                                            if($estado=="Aprovado")
+                                                            {?>
+                                                                <button type="button" id="<?=$dado['cod_pedido']?>" class="btn_Retirada btn btn-success"><font size='3'>Fazer retirada</font></button>
+                                                             <?php } ?>
                                                                 <?php 
-                                                                    if($estado!="Aprovado" && $estado!="Cancelado")
+                                                                    if($estado!="Aprovado" && $estado!="Cancelado" && $estado!="Retirado")
                                                                     {?>
                                                                         <button type="button" id="<?=$dado['cod_pedido']?>" class="btn_EditarPedidoAlmoxarifado btn btn-primary"><font size='3'>Editar pedido</font></button>
                                                                         <button type="button" id="<?=$dado['cod_pedido']?>" class="btn_CancelaPedido btn btn-danger"><font size='3'>Cancelar pedido</font></button>

@@ -123,6 +123,12 @@
                 window.location = "exibe_itens.php?Pedido="+idPedido;
 
             });
+            //Botão para retirar um pedido
+            $(".btn_Retirada").on('click', function(){
+                var idPedido = ($(this).attr('id'));
+                window.location = "login_retirada.php?Pedido="+idPedido;
+
+            });
             
              //Pega o id do item na tabela do usuario autorizador
             $(".btn_idPedido_Autorizador").on('click', function(){
@@ -161,6 +167,14 @@
             
             /*Aprova um pedido pendenete*/
             $(".btn_AprovarPedidoAutorizador").on('click', function(){
+                var idPedido = ($(this).attr('id'));
+               if (confirm('Tem certeza que quer aprovar o pedido?')){ 
+                    window.location = "aprova_pedido.php?Pedido="+idPedido;
+                }
+            });
+            
+            /*Aprova um pedido pendenete*/
+            $(".btn_AprovarPedidoAlmoxarifado").on('click', function(){
                 var idPedido = ($(this).attr('id'));
                if (confirm('Tem certeza que quer aprovar o pedido?')){ 
                     window.location = "aprova_pedido.php?Pedido="+idPedido;

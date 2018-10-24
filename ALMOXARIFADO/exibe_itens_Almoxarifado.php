@@ -7,7 +7,7 @@
     /*Pega o codigo do pedido da tabela correspondente a linha clicada*/
     $PegaPedido = $_GET['Pedido'];
     
-    $contulta_itens_pedido = "SELECT I.unidade_Tipo, I.nome, PI.quantidade_Solicitada, P.data_Pedido FROM pedido_item as PI INNER JOIN itens as I ON (PI.fk_Pedido = $PegaPedido AND PI.fk_Item = I.cod_item) INNER JOIN pedido as P ON (PI.fk_Pedido = P.cod_pedido)";
+    $contulta_itens_pedido = "SELECT I.unidade_Tipo, I.nome, PI.quantidade_Solicitada,PI.quantidade_Fornecida, P.data_Pedido FROM pedido_item as PI INNER JOIN itens as I ON (PI.fk_Pedido = $PegaPedido AND PI.fk_Item = I.cod_item) INNER JOIN pedido as P ON (PI.fk_Pedido = P.cod_pedido)";
 	$connect_itens_pedido = mysql_query($contulta_itens_pedido, $con) or die(mysql_error());
     $linha = mysql_fetch_assoc($connect_itens_pedido);
     $total = mysql_num_rows($connect_itens_pedido); // Total de itens retornados
@@ -59,9 +59,9 @@
 
 	<div class="topnav " id="myTopnav">
           <a href="#home" class="active"><font size="3">HOME</font></a>
-          <a href="acompanhar_Pedido_Autorizador.php"><font size="3">ACOMPANHAR PEDIDO</font></a>
-          <a href="fazer_Pedido_Autorizador.php"><font size="3">FAZER PEDIDO</font></a>
-          <a href="pedidos_cancelados_Autorizador.php"><font size="3">PEDIDOS CANCELADOS</font></a>
+          <a href="acompanhar_Pedido_Almoxarifado.php"><font size="3">ACOMPANHAR PEDIDO</font></a>
+          <a href="fazer_Pedido_Almoxarifado.php"><font size="3">FAZER PEDIDO</font></a>
+          <a href="pedidos_cancelados_Almoxarifado.php"><font size="3">PEDIDOS CANCELADOS</font></a>
           <a href="../login.php"><font size="3">SAIR</font></a>
           <a href="javascript:void(0);" class="icon" onclick="cria_Botao_NavBar();">
            <i class="fa fa-bars"></i>
@@ -83,6 +83,7 @@
 									<tr>
                                       <th scope="col" ><font size="3"><center>NOME</center></font></th>
 									  <th scope="col"><font size="3"><center>QUANTIDADE SOLICITADA</center></font></th>
+                                       <th scope="col"><font size="3"><center>QUANTIDADE FORNECIDA</center></font></th>
                                         <th scope="col"><font size="3"><center>UNIDADE</center></font></th>
 									</tr>
 								  </thead>
@@ -90,6 +91,7 @@
 								    <tr>
                                         <td style="width:10px" class="idItem"><font size="3"><center><?=utf8_encode($linha['nome'])?></center></font></td>
                                         <td style="width:200px"><font size="3"><center><?=$linha['quantidade_Solicitada']?></center></font></td>
+                                        <td style="width:200px"><font size="3"><center><?=$linha['quantidade_Fornecida']?></center></font></td>
                                         <td style="width:200px"><font size="3"><center><?=$linha['unidade_Tipo']?></center></font></td>
 								    </tr>
 								       <?php 											
@@ -97,6 +99,7 @@
 												<tr>
                                                 <td style="width:10px" class="idItem"><font size="3"><center><?=utf8_encode($dado['nome'])?></center></font></td>
                                                  <td style="width:200px"><font size="3"><center><?=$dado['quantidade_Solicitada']?></center></font></td>
+                                                <td style="width:200px"><font size="3"><center><?=$dado['quantidade_Fornecida']?></center></font></td>
                                                 <td style="width:200px"><font size="3"><center><?=$dado['unidade_Tipo']?></center></font></td>
 												</tr>
 									   <?php } ?>

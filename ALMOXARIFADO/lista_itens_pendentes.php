@@ -4,6 +4,7 @@
 	
 	include "../connect_BD.php";
 	require "../connect_BD.php";
+    $id = $_SESSION['IdPedido'];
 ?>	
 <!DOCTYPE html>
 <html>
@@ -68,7 +69,8 @@
                                                   <th scope="col"><center>CÓDIGO</center></th>
                                                   <th scope="col"><center>ESPECIFICAÇÃO</center></th>
                                                   <th scope="col"><center>QUANTIDADE SOLICITADA</center></th>
-                                                  <th scope="col"><center>UNIDADE</center></th>
+                                                  <th scope="col"><center>QUANTIDADE FORNECIDA</center></th>
+                                                  <th scope="col"><center>UNIDADES</center></th>
                                                 </tr>
                                               </thead>
                                               <tbody>
@@ -77,15 +79,23 @@
                                                         //Cria sessão
                                                         $_SESSION['setor'] = $_POST["nome"];
                                                         $_SESSION['quantidade'] = array();
+                                                        $_SESSION['quantidade_disp'] = array();
                                                         $_SESSION['item'] = array();
-                                                        if(isset($_POST["itens"]) && isset($_POST["quantidade"])) {
+                                                        if(isset($_POST["itens"]) && isset($_POST["quantidade"]) && isset($_POST["quantidade_fornecida"])) {
                                                                 $i= 0;
                                                                 $j= 0;
+                                                                $a= 0;
                                                                 $aux = array();
                                                                 foreach($_POST["quantidade"] as $quant) {
                                                                     array_push($_SESSION['quantidade'], $quant);
                                                                     $quantidade[$i] = $quant;
                                                                     $i++;
+                                                                }
+                                                            
+                                                                foreach($_POST["quantidade_fornecida"] as $quant_disp) {
+                                                                    array_push($_SESSION['quantidade_disp'], $quant_disp);
+                                                                    $disponivel[$a] = $quant_disp;
+                                                                    $a++;
                                                                 }
                                                             
                                                                 foreach($_POST["itens"] as $item)
@@ -101,7 +111,7 @@
                                                                     {
                                                                         if($produto[$cont] == $produto[$contd])
                                                                         {
-                                                                          echo"<script type='text/javascript'>alert('Por favor, não selecione dois ou mais itens iguais em um mesmo pedido! ');window.location.href='editar_Pedido.php';</script>";  
+                                                                          echo"<script type='text/javascript'>alert('Por favor, não selecione dois ou mais itens iguais em um mesmo pedido! ');window.location.href='editar_Pedido_Criado_Almoxarifado.php?Pedido=$id'</script>";  
                                                                         }
                                                                     }
                                                                 }
@@ -116,6 +126,7 @@
                                                                       <td><font size="3"><center><?=$produto[$x]?></center></font></td>
                                                                       <td ><font size="3"><center><?=utf8_encode($linha['nome'])?></center></font></td>
                                                                       <td><font size="3"><center><?=$quantidade[$x]?></center></font></td>
+                                                                      <td><font size="3"><center><?=$disponivel[$x]?></center></font></td>
                                                                       <td><font size="3"><center><?=utf8_encode($linha['unidade_Tipo'])?></center></font></td>
                                                                     </tr>
                                                             <?php } ?>
@@ -139,5 +150,3 @@
 </html>
 
 
-
-                                                   

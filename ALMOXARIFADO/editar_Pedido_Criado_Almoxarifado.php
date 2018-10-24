@@ -10,7 +10,7 @@
     $_SESSION['IdPedido'] = $PegaPedido;
 
     //Consulta o setor
-    $consulta_setor = "SELECT S.nome, S.cod_setor FROM setor AS S INNER JOIN usuario AS U ON S.cod_setor=U.fk_Perfil WHERE U.matricula='$_SESSION[matricula]'";
+    $consulta_setor = "SELECT S.nome, S.cod_setor FROM setor AS S INNER JOIN usuario AS U WHERE U.matricula=$_SESSION[matricula] AND S.cod_setor=U.fk_Setor";
 	$connect_setor = mysql_query($consulta_setor, $con ) or die(mysql_query());
     $linha_setor = mysql_fetch_assoc($connect_setor);
     //Pega os itens do pedido
@@ -61,9 +61,9 @@
 
 	<div class="topnav " id="myTopnav">
           <a href="#home" class="active"><font size="3">HOME</font></a>
-          <a href="acompanhar_Pedido_Autorizador.php"><font size="3">ACOMPANHAR PEDIDO</font></a>
-          <a href="fazer_Pedido.php"><font size="3">FAZER PEDIDO</font></a>
-          <a href="pedidos_cancelados.php"><font size="3">PEDIDOS CANCELADOS</font></a>
+          <a href="acompanhar_Pedido_Almoxarifado.php"><font size="3">ACOMPANHAR PEDIDO</font></a>
+          <a href="fazer_Pedido_Almoxarifado.php"><font size="3">FAZER PEDIDO</font></a>
+          <a href="pedidos_cancelados_Almoxarifado.php"><font size="3">PEDIDOS CANCELADOS</font></a>
           <a href="../login.php"><font size="3">SAIR</font></a>
           <a href="javascript:void(0);" class="icon" onclick="cria_Botao_NavBar();">
            <i class="fa fa-bars"></i>
@@ -96,7 +96,7 @@
                                             <div id="div_pedidos">
                                                 <select name="itens[]" required>
                                                 <option value="<?=$dados['cod_item']?>"><?=utf8_encode($dados['nome'])?>&nbsp;- &nbsp;<?=$dados['unidade_Tipo']?></option>
-                                                </select><input type="text" required="required" name="quantidade[]" onkeypress="return SomenteNumero()" value="<?php echo $dados['quantidade_Solicitada'];?>"><a href="#" class="remover_campo text-danger" >Remover</a>
+                                                </select><input type="text" required="required" name="quantidade[]" onkeypress="return SomenteNumero()" value="<?php echo $dados['quantidade_Solicitada'];?>"><input type="text" required="required" name="quantidade_fornecida[]" placeholder="Quant. Disponível" onkeypress="return SomenteNumero()" ><a href="#" class="remover_campo text-danger" >Remover</a>
                                             </div>   
                                         <?php }?>
                                         </div>

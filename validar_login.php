@@ -43,7 +43,7 @@
 				header('Location: ./COMUM/fazer_Pedido.php');
 			}else if($dado['cod_perfil'] == ALMOXARIFADO)
 			{
-                				session_start();
+                session_start();
 				$_SESSION["matricula"] = $_POST["matricula"];
 				echo $_SESSION["matricula"];
 				header('Location: ./ALMOXARIFADO/fazer_Pedido_Almoxarifado.php');
